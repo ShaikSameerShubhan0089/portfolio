@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, jsonify
-from openai import OpenAI
 from dotenv import load_dotenv
 import os
 import smtplib
@@ -9,9 +8,6 @@ from email.message import EmailMessage
 load_dotenv()
 
 app = Flask(__name__)
-
-# === OpenAI API Setup ===
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # === Routes ===
 @app.route('/')
@@ -45,25 +41,6 @@ def contact():
 @app.route('/chat')
 def chat():
     return render_template('chat.html')
-
-
-# === AI Chatbot API ===
-@app.route('/chatbot', methods=['POST'])
-def chatbot():
-    user_input = request.json.get('message')
-    try:
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "system", "content": "You are an AI recruiter assistant who knows everything about Sameer Shaik's skills, projects, and qualifications."},
-                {"role": "user", "content": user_input}
-            ]
-        )
-        reply = response.choices[0].message.content.strip()
-        return jsonify({'reply': reply})
-    except Exception as e:
-        return jsonify({'reply': f"❌ Error: {str(e)}"})
-
 
 # === Resume Request Form Handler ===
 @app.route('/request_resume', methods=["POST"])
