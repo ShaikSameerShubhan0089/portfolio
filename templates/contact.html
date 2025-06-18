@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" data-aos="fade-up" style="text-align: center;">
+  <h2>Contact Me</h2>
+  <p>Want to connect with Sameer? Here are my active profiles and contact info:</p>
+
+  <div class="badges" style="margin-top: 2rem;">
+    <a href="mailto:shaiksameershubhan@gmail.com">📧 Email</a>
+    <a href="https://www.linkedin.com/in/shaik-sameer-69a3422a8" target="_blank">🔗 LinkedIn</a>
+    <a href="https://github.com/Smr2005" target="_blank">💻 GitHub</a>
+    <a href="https://www.instagram.com/_shaik___sameer_shubhan" target="_blank">📸 Instagram</a>
+    <a href="https://www.instagram.com/s.m.r_writings" target="_blank">📝 Writings</a>
+  </div>
+</div>
+<section class="section" id="contact" data-aos="fade-up">
+  <h2>📩 Request My Resume</h2>
+  <p>If you're a recruiter or collaborator and want my resume, please fill this form. I’ll review your request and respond soon.</p>
+
+  <form action="/request_resume" method="POST" class="resume-form" data-aos="zoom-in" data-aos-delay="100">
+    <input type="text" name="name" placeholder="👤 Your Full Name" required>
+    <input type="email" name="email" placeholder="📧 Your Email Address" required>
+    <button type="submit">🔓 Request Resume Access</button>
+  </form>
+
+  <div class="footer" style="margin-top: 3rem; text-align: center; font-size: 0.9rem; color: #ccc;">
+    <p>Alternatively, reach me directly at <a href="mailto:shaiksameershubhan@gmail.com" style="color: #0ef;">shaiksameershubhan@gmail.com</a></p>
+  </div>
+</section>
+{% endblock %}

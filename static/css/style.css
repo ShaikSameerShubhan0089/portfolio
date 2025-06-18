@@ -1,0 +1,501 @@
+/* === General Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background: url('/static/images/sameer-bg.jpg') no-repeat center center fixed;
+  background-size: cover;
+  backdrop-filter: blur(5px);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* === Navbar === */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: rgba(0, 0, 0, 0.7);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar h1 {
+  color: #0ef;
+  font-size: 1.8rem;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.navbar ul li a:hover {
+  color: #0ef;
+}
+
+/* === Hero Section === */
+.hero {
+  padding: 6rem 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #FFD700;
+  animation: fadeInDown 1.5s ease-in-out;
+}
+.hero h2 span {
+  color: #0ef;
+}
+.hero p {
+  font-size: 1.3rem;
+  color: #eee;
+}
+
+/* === Sections === */
+.section {
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+.section h2 {
+  color: #0ef;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.section ul {
+  list-style: none;
+  padding-left: 1.2rem;
+}
+.section ul li {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+.section ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #0ef;
+}
+
+/* === About === */
+.about-enhanced {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.profile-glow {
+  background: radial-gradient(circle at center, #0ef3, #0000);
+  padding: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #0ef8, 0 0 40px #0ef6;
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+.profile-img-glow {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+.about-name {
+  color: #FFD700;
+  font-size: 2rem;
+}
+.about-title {
+  font-size: 1.1rem;
+  color: #ccc;
+}
+.about-desc, .about-extra {
+  max-width: 700px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #eee;
+}
+.badge-row {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.badge {
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid #0ef;
+  color: #0ef;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+}
+.badge:hover {
+  transform: scale(1.1);
+  background: #0ef;
+  color: #000;
+}
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px #0ef6, 0 0 40px #0ef3; }
+  50% { transform: scale(1.05); box-shadow: 0 0 30px #0ef9, 0 0 60px #0ef4; }
+}
+
+/* === Technologies === */
+.tech-enhanced {
+  text-align: center;
+}
+.tech-subtext {
+  color: #ccc;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+  padding-top: 1rem;
+}
+.tech-item img {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.2));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.tech-item:hover img {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 12px #0ef);
+}
+
+/* === Skills === */
+.skill-grid-section {
+  text-align: center;
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.skill-card {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #0ef5;
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 10px #0ef3;
+}
+
+.skill-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #0ef;
+}
+
+.skill-card img {
+  width: 50px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 8px #0ef7);
+}
+
+.skill-card h4 {
+  margin-bottom: 0.8rem;
+  color: #0ef;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.skill-level {
+  display: inline-block;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #aaa;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid #0ef5;
+  border-radius: 8px;
+  padding: 3px 10px;
+}
+
+.skill-level.learning {
+  background: rgba(255, 255, 0, 0.15);
+  border-color: #ff0;
+  color: #ff0;
+}
+
+.bar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px #0ef4;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, #0ef, #00f6ff);
+  width: 0;
+  animation: grow 2s ease forwards;
+}
+
+.fill::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: var(--level);
+  background: inherit;
+  animation: fillGlow 1.8s ease-out forwards;
+}
+
+@keyframes grow {
+  from { width: 0; }
+  to { width: var(--level); }
+}
+
+@keyframes fillGlow {
+  0% { box-shadow: 0 0 5px #0ef; }
+  100% { box-shadow: 0 0 20px #0ef; }
+}
+
+
+
+/* === Chat Section === */
+#chatbox {
+  height: 300px;
+  background: #111;
+  border-radius: 12px;
+  padding: 1rem;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  color: #0ef;
+  box-shadow: inset 0 0 10px #0ef3;
+}
+#userInput {
+  width: 70%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+/* === Floating Chat Icon === */
+#chat-float-btn {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: url('/static/images/chatbot-icon.png') no-repeat center center;
+  background-size: contain;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #0ef, 0 0 50px #0ef6;
+  z-index: 9999;
+  transition:
+    top 0.8s ease, left 0.8s ease,
+    transform 0.4s ease, opacity 0.4s ease;
+  cursor: pointer;
+}
+#chat-float-btn.talking {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px #0ef, 0 0 40px #0ef; }
+  50% { transform: scale(1.1); box-shadow: 0 0 30px #0ef, 0 0 60px #0ef; }
+}
+#chat-float-btn::before {
+  content: attr(title);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 255, 255, 0.85);
+  color: #000;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+#chat-float-btn:hover::before {
+  opacity: 1;
+}
+
+/* === Contact Section === */
+.contact-enhanced {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+.contact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.contact-card {
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid #0ef;
+  padding: 1rem;
+  border-radius: 15px;
+  width: 240px;
+  text-align: center;
+  color: #0ef;
+  text-decoration: none;
+  transition: transform 0.6s ease;
+  box-shadow: 0 0 10px #0ef3;
+}
+.contact-card:hover {
+  transform: rotateY(10deg) scale(1.05);
+  background: #0ef;
+  color: #000;
+  box-shadow: 0 0 25px #0ef;
+}
+.contact-card i {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.contact-card span {
+  display: block;
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* === WhatsApp Floating Button === */
+/* === Glowing WhatsApp Button === */
+#whatsapp-float {
+  position: fixed;
+  bottom: 50px;
+  left: 60px;
+  background: #25D366;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.75rem 1.2rem;
+  border-radius: 50px;
+  box-shadow: 0 0 15px #25D366;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  white-space: nowrap;
+}
+
+#whatsapp-float:hover {
+  transform: scale(1.08);
+}
+
+/* Adjust position for mobile so it doesn't overlap */
+@media screen and (max-width: 768px) {
+  #whatsapp-float {
+    bottom: 80px; /* pushes it higher */
+    left: 20px;
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+}
+
+
+/* === Animations === */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === Mobile Responsiveness === */
+@media screen and (max-width: 768px) {
+  #chat-float-btn {
+    width: 80px;
+    height: 80px;
+  }
+}
+/* === Enhanced Resume Access Form === */
+.resume-enhanced {
+  text-align: center;
+}
+
+.resume-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 16px;
+  box-shadow: 0 0 20px #0ef3;
+}
+
+.resume-form .form-group {
+  text-align: left;
+}
+
+.resume-form label {
+  color: #0ef;
+  margin-bottom: 0.3rem;
+  display: block;
+  font-weight: 600;
+}
+
+.resume-form input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #0ef5;
+  background-color: #111;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.resume-form input::placeholder {
+  color: #888;
+}
+
+.resume-form button {
+  background: #0ef;
+  color: #000;
+  font-weight: bold;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.resume-form button:hover {
+  background: #00c6ff;
+  box-shadow: 0 0 15px #0ef;
+}
+
+.privacy-note {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
