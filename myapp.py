@@ -55,7 +55,8 @@ def request_resume():
     sender_password = os.getenv("SENDER_PASSWORD")
     recipient_email = sender_email  # You (Sameer) receive it
 
-    approve_link = f"http://127.0.0.1:5000/approve_resume?email={email}&name={name}"
+   approve_link = f"https://sameer-porfolio.onrender.com/approve_resume?email={email}&name={name}"
+
     deny_link = f"mailto:{email}?subject=Regarding%20Resume%20Request&body=Hi%20{name},%20thank%20you%20for%20your%20interest.%20Currently%20I’m%20unable%20to%20share%20my%20resume.%20Regards,%20Sameer"
 
     # Compose the HTML message
