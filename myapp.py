@@ -14,34 +14,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
-
-@app.route('/projects')
-def projects():
-    return render_template('projects.html')
-
-@app.route('/certifications')
-def certifications():
-    return render_template('certifications.html')
-
-@app.route('/technologies')
-def technologies():
-    return render_template('technologies.html')
-
-@app.route('/internships')
-def internships():
-    return render_template('internships.html')
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
-@app.route('/chat')
-def chat():
-    return render_template('chat.html')
-
 # === Resume Request Form Handler ===
 @app.route('/request_resume', methods=["POST"])
 def request_resume():
