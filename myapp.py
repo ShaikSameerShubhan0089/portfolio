@@ -58,7 +58,7 @@ def request_resume():
         server.login(sender_email, sender_password)
         server.send_message(msg)
         server.quit()
-        return "<h3>✅ Request received! Sameer will respond shortly.</h3>"
+        return "<h3>✅ thank you for your cooperation! Sameer will respond shortly.</h3>"
     except Exception as e:
         return f"<h3>❌ Error sending notification email: {str(e)}</h3>"
 
