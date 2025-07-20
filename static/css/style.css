@@ -2746,11 +2746,25 @@ body {
 
 @media (max-width: 768px) {
   .button-label {
-    display: none;
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
   }
   
   .voice-button-3d {
-    min-width: 55px;
+    min-width: 80px;
+    padding: 0.8rem;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  
+  .voice-button-3d i {
+    font-size: 1.1rem;
+  }
+  
+  .voice-controls {
+    gap: 0.5rem;
+    justify-content: center;
   }
 }
 
@@ -3021,11 +3035,13 @@ body {
   }
   
   .button-label {
-    display: none;
+    display: block;
+    font-size: 0.8rem;
   }
   
   .voice-button-3d {
-    min-width: 55px;
+    min-width: 80px;
+    padding: 0.8rem;
   }
 }
 
