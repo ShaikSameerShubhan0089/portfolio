@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Test - Sameer Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #0a0a0a;
+            color: #fff;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .pass { background: #00ff00; color: #000; }
+        .fail { background: #ff0000; color: #fff; }
+        .info { background: #00ffff; color: #000; }
+        button {
+            background: #00ffff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>📱 Mobile Optimization Test</h1>
+    
+    <div class="test-section">
+        <h2>Device Detection</h2>
+        <div id="device-info"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Viewport Information</h2>
+        <div id="viewport-info"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Touch Support</h2>
+        <div id="touch-info"></div>
+        <button onclick="testTouch()">Test Touch</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>Performance Tests</h2>
+        <div id="performance-info"></div>
+        <button onclick="testPerformance()">Run Performance Test</button>
+    </div>
+    
+    <div class="test-section">
+        <h2>CSS Features</h2>
+        <div id="css-info"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Navigation Test</h2>
+        <a href="/" style="color: #00ffff;">← Back to Portfolio</a>
+    </div>
+
+    <script>
+        // Device Detection
+        function detectDevice() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const devicePixelRatio = window.devicePixelRatio || 1;
+            
+            document.getElementById('device-info').innerHTML = `
+                <div class="status ${isMobile ? 'pass' : 'info'}">Mobile Device: ${isMobile ? 'Yes' : 'No'}</div>
+                <div class="status ${isTouch ? 'pass' : 'info'}">Touch Support: ${isTouch ? 'Yes' : 'No'}</div>
+                <div class="status info">Device Pixel Ratio: ${devicePixelRatio}</div>
+                <div class="status info">User Agent: ${navigator.userAgent}</div>
+            `;
+        }
+        
+        // Viewport Information
+        function getViewportInfo() {
+            const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+            const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+            const orientation = screen.orientation ? screen.orientation.angle : 'unknown';
+            
+            document.getElementById('viewport-info').innerHTML = `
+                <div class="status info">Viewport Width: ${vw}px</div>
+                <div class="status info">Viewport Height: ${vh}px</div>
+                <div class="status info">Screen Width: ${screen.width}px</div>
+                <div class="status info">Screen Height: ${screen.height}px</div>
+                <div class="status info">Orientation: ${orientation}°</div>
+            `;
+        }
+        
+        // Touch Test
+        function testTouch() {
+            const touchInfo = document.getElementById('touch-info');
+            touchInfo.innerHTML += '<div class="status info">Touch test initiated...</div>';
+            
+            document.addEventListener('touchstart', function(e) {
+                touchInfo.innerHTML += `<div class="status pass">Touch detected at: ${e.touches[0].clientX}, ${e.touches[0].clientY}</div>`;
+            }, { once: true });
+        }
+        
+        // Performance Test
+        function testPerformance() {
+            const start = performance.now();
+            
+            // Simulate some work
+            for (let i = 0; i < 100000; i++) {
+                Math.random();
+            }
+            
+            const end = performance.now();
+            const duration = end - start;
+            
+            document.getElementById('performance-info').innerHTML = `
+                <div class="status ${duration < 10 ? 'pass' : duration < 50 ? 'info' : 'fail'}">
+                    Performance Test: ${duration.toFixed(2)}ms
+                </div>
+                <div class="status info">Memory: ${navigator.deviceMemory || 'Unknown'} GB</div>
+                <div class="status info">Hardware Concurrency: ${navigator.hardwareConcurrency || 'Unknown'}</div>
+            `;
+        }
+        
+        // CSS Features Test
+        function testCSSFeatures() {
+            const features = {
+                'CSS Grid': CSS.supports('display', 'grid'),
+                'CSS Flexbox': CSS.supports('display', 'flex'),
+                'CSS Transforms': CSS.supports('transform', 'translateZ(0)'),
+                'CSS Backdrop Filter': CSS.supports('backdrop-filter', 'blur(10px)'),
+                'CSS Custom Properties': CSS.supports('color', 'var(--test)'),
+                'CSS Animations': CSS.supports('animation-name', 'test')
+            };
+            
+            let html = '';
+            for (const [feature, supported] of Object.entries(features)) {
+                html += `<div class="status ${supported ? 'pass' : 'fail'}">${feature}: ${supported ? 'Supported' : 'Not Supported'}</div>`;
+            }
+            
+            document.getElementById('css-info').innerHTML = html;
+        }
+        
+        // Initialize tests
+        detectDevice();
+        getViewportInfo();
+        testCSSFeatures();
+        
+        // Update viewport info on resize
+        window.addEventListener('resize', getViewportInfo);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(getViewportInfo, 100);
+        });
+    </script>
+</body>
+</html>
