@@ -19,6 +19,11 @@ def mobile_test():
     with open('mobile_test.html', 'r') as f:
         return f.read()
 
+@app.route('/mobile-debug')
+def mobile_debug():
+    with open('mobile_debug.html', 'r') as f:
+        return f.read()
+
 @app.route('/test-resume')
 def test_resume():
     return render_template('test_resume.html')
