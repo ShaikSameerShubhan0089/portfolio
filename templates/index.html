@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sameer Shaik | 3D AI Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://kit.fontawesome.com/23db9cb3f7.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-overlay">
+    <div class="loading-container">
+      <div class="loading-cube">
+        <div class="cube-face front">S</div>
+        <div class="cube-face back">A</div>
+        <div class="cube-face right">M</div>
+        <div class="cube-face left">E</div>
+        <div class="cube-face top">E</div>
+        <div class="cube-face bottom">R</div>
+      </div>
+      <div class="loading-text">
+        <span class="loading-letter">L</span>
+        <span class="loading-letter">o</span>
+        <span class="loading-letter">a</span>
+        <span class="loading-letter">d</span>
+        <span class="loading-letter">i</span>
+        <span class="loading-letter">n</span>
+        <span class="loading-letter">g</span>
+        <span class="loading-dots">...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+  
+  <!-- Animated Background Elements -->
+  <div class="bg-elements">
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="bg-circle bg-circle-3"></div>
+    <div class="bg-wave bg-wave-1"></div>
+    <div class="bg-wave bg-wave-2"></div>
+  </div>
+  
+  <!-- Floating Particles -->
+  <div class="particles-container">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <!-- Floating Geometric Shapes -->
+  <div class="geometric-shapes">
+    <div class="shape triangle"></div>
+    <div class="shape circle"></div>
+    <div class="shape square"></div>
+    <div class="shape hexagon"></div>
+    <div class="shape diamond"></div>
+  </div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <!-- 🔗 3D Enhanced Navigation -->
+  <nav class="navbar-3d">
+    <div class="nav-brand">
+      <h1 class="logo-3d">
+        <span class="logo-letter">S</span>
+        <span class="logo-letter">a</span>
+        <span class="logo-letter">m</span>
+        <span class="logo-letter">e</span>
+        <span class="logo-letter">e</span>
+        <span class="logo-letter">r</span>
+      </h1>
+    </div>
+    <ul class="nav-menu-3d">
+      <li><a href="#about" class="nav-link-3d">About</a></li>
+      <li><a href="#projects" class="nav-link-3d">Projects</a></li>
+      <li><a href="#certifications" class="nav-link-3d">Certifications</a></li>
+      <li><a href="#skills" class="nav-link-3d">Technologies</a></li>
+      <li><a href="#internships" class="nav-link-3d">Internships</a></li>
+      <li><a href="#chat" class="nav-link-3d">Chat</a></li>
+      <li><a href="#contact" class="nav-link-3d">Contact</a></li>
+      <li><a href="#resume" class="nav-link-3d">Resume</a></li>
+    </ul>
+    <div class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- 🌌 3D Hero Section -->
+  <section class="hero-3d" data-aos="zoom-in">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="hero-greeting">Hello, I'm</span>
+          <span class="hero-name">
+            <span class="name-letter">S</span>
+            <span class="name-letter">a</span>
+            <span class="name-letter">m</span>
+            <span class="name-letter">e</span>
+            <span class="name-letter">e</span>
+            <span class="name-letter">r</span>
+            <span class="name-space"></span>
+            <span class="name-letter">S</span>
+            <span class="name-letter">h</span>
+            <span class="name-letter">a</span>
+            <span class="name-letter">i</span>
+            <span class="name-letter">k</span>
+          </span>
+        </h1>
+        <p class="hero-subtitle">
+          <span class="typing-text">AI & Data Science Developer</span>
+          <span class="cursor">|</span>
+        </p>
+        <div class="hero-tags">
+          <span class="tag-3d">Flask Expert</span>
+          <span class="tag-3d">Streamlit Enthusiast</span>
+          <span class="tag-3d">ML Engineer</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="ai-brain-container">
+          <div class="ai-brain">
+            <div class="brain-core">
+              <div class="core-text">AI</div>
+              <div class="pulse-ring"></div>
+              <div class="pulse-ring delay-1"></div>
+              <div class="pulse-ring delay-2"></div>
+            </div>
+            <div class="neural-network">
+              <div class="neuron n1"><span>ML</span></div>
+              <div class="neuron n2"><span>DS</span></div>
+              <div class="neuron n3"><span>DL</span></div>
+              <div class="neuron n4"><span>CV</span></div>
+              <div class="neuron n5"><span>IoT</span></div>
+              <div class="neuron n6"><span>NLP</span></div>
+            </div>
+            <div class="neural-connections">
+              <div class="connection c1"></div>
+              <div class="connection c2"></div>
+              <div class="connection c3"></div>
+              <div class="connection c4"></div>
+              <div class="connection c5"></div>
+              <div class="connection c6"></div>
+              <div class="connection c7"></div>
+              <div class="connection c8"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Floating Stats -->
+        <div class="floating-stats">
+          <div class="stat-card" data-aos="fade-left" data-aos-delay="200">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-card" data-aos="fade-left" data-aos-delay="400">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Internships</div>
+          </div>
+          <div class="stat-card" data-aos="fade-left" data-aos-delay="600">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+        </div>
+        
+        <!-- Tech Stack Icons -->
+        <div class="tech-orbit">
+          <div class="tech-icon python" data-aos="zoom-in" data-aos-delay="800">
+            <i class="fab fa-python"></i>
+          </div>
+          <div class="tech-icon flask" data-aos="zoom-in" data-aos-delay="900">
+            <i class="fas fa-flask"></i>
+          </div>
+          <div class="tech-icon database" data-aos="zoom-in" data-aos-delay="1000">
+            <i class="fas fa-database"></i>
+          </div>
+          <div class="tech-icon ai" data-aos="zoom-in" data-aos-delay="1100">
+            <i class="fas fa-brain"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section-3d about-3d" data-aos="fade-up">
+    <div class="about-3d-visual">
+      <div class="about-3d-scene">
+        <div class="floating-profile">
+          <div class="profile-body">👨‍💻</div>
+          <div class="achievement-badges">
+            <div class="achievement">🎓</div>
+            <div class="achievement">💻</div>
+            <div class="achievement">🚀</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">About Me</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="about-container">
+      <div class="profile-3d">
+        <div class="profile-card">
+          <div class="profile-image-container">
+            <div class="profile-glow-ring"></div>
+            <img class="profile-img-3d" src="https://github.com/Smr2005.png" alt="Sameer Shaik">
+            <div class="profile-particles">
+              <div class="profile-particle"></div>
+              <div class="profile-particle"></div>
+              <div class="profile-particle"></div>
+              <div class="profile-particle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <h3 class="about-name-3d">Sameer Shaik</h3>
+        <p class="about-title-3d">AI & Data Science Developer</p>
+        <div class="about-text-3d">
+          <p class="about-desc-3d">🚀 Passionate about solving real-world problems with AI, IoT, and Deep Learning. Whether it's building facial recognition systems or disease prediction apps, I thrive on innovation.</p>
+          <p class="about-extra-3d">🖋 I'm also a poet, creative writer, and someone who believes in technology with a soul.</p>
+        </div>
+        <div class="badges-3d">
+          <div class="badge-3d">
+            <i class="fas fa-robot badge-icon"></i>
+            <span class="badge-text">AI Developer</span>
+          </div>
+          <div class="badge-3d">
+            <i class="fas fa-brain badge-icon"></i>
+            <span class="badge-text">ML Enthusiast</span>
+          </div>
+          <div class="badge-3d">
+            <i class="fas fa-pen-fancy badge-icon"></i>
+            <span class="badge-text">Creative Writer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section-3d projects-3d" data-aos="fade-right">
+    <div class="section-header">
+      <h2 class="section-title-3d">🚀 Projects</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card-3d" data-aos="flip-left">
+        <div class="project-3d-animation-area">
+          <div class="portfolio-3d-scene">
+            <div class="floating-laptop">
+              <div class="laptop-screen">
+                <div class="screen-glow"></div>
+                <div class="code-lines">
+                  <div class="code-line"></div>
+                  <div class="code-line"></div>
+                  <div class="code-line"></div>
+                </div>
+                <div class="typing-cursor"></div>
+              </div>
+              <div class="laptop-base"></div>
+            </div>
+            <div class="floating-icons">
+              <div class="tech-orb flask"><span>Flask</span></div>
+              <div class="tech-orb css"><span>CSS3</span></div>
+              <div class="tech-orb js"><span>JS</span></div>
+            </div>
+            <div class="code-particles">
+              <div class="particle">&lt;/&gt;</div>
+              <div class="particle">{}</div>
+              <div class="particle">[]</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Personal Portfolio</h3>
+          <p class="project-desc">Modern 3D portfolio with AI chatbot integration.</p>
+          <div class="project-tech">
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Flask</span>
+          </div>
+          <div class="project-links">
+            <a href="https://sameer-porfolio.onrender.com/" target="_blank" class="project-link live-demo">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/Smr2005/SAMEER_Porfolio.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="100">
+        <div class="project-3d-animation-area">
+          <div class="movie-3d-scene">
+            <div class="floating-cinema">
+              <div class="cinema-screen">
+                <div class="movie-reel"></div>
+                <div class="recommendation-flow">
+                  <div class="data-point"></div>
+                  <div class="data-point"></div>
+                  <div class="data-point"></div>
+                </div>
+                <div class="movie-posters">
+                  <div class="poster">🎬</div>
+                  <div class="poster">🍿</div>
+                  <div class="poster">🎭</div>
+                </div>
+              </div>
+            </div>
+            <div class="ml-algorithm">
+              <div class="algorithm-node python"><span>🐍</span></div>
+              <div class="algorithm-node streamlit"><span>⚡</span></div>
+              <div class="algorithm-node ml"><span>🧠</span></div>
+            </div>
+            <div class="recommendation-arrows">
+              <div class="arrow">→</div>
+              <div class="arrow">↗</div>
+              <div class="arrow">↘</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Movie Recommender System</h3>
+          <p class="project-desc">AI-powered movie recommendations with collaborative filtering.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">ML</span>
+          </div>
+          <div class="project-links">
+            <a href="https://smr2005-movie-recomendor-system-eqeizu5aesxnqxk9m3tz9u.streamlit.app/" target="_blank" class="project-link live-demo">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/Smr2005/Smr2005-Movie-Recomendor-System.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="200">
+        <div class="project-3d-animation-area">
+          <div class="car-3d-scene">
+            <div class="floating-car">
+              <div class="car-body">🚗</div>
+              <div class="sentiment-waves">
+                <div class="wave positive"></div>
+                <div class="wave neutral"></div>
+                <div class="wave negative"></div>
+              </div>
+              <div class="car-exhaust">
+                <div class="smoke-particle"></div>
+                <div class="smoke-particle"></div>
+                <div class="smoke-particle"></div>
+              </div>
+            </div>
+            <div class="nlp-processing">
+              <div class="text-particle">😊</div>
+              <div class="text-particle">😐</div>
+              <div class="text-particle">😞</div>
+            </div>
+            <div class="sentiment-indicators">
+              <div class="indicator positive">+</div>
+              <div class="indicator neutral">~</div>
+              <div class="indicator negative">-</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Car Pulse</h3>
+          <p class="project-desc">NLP-powered sentiment analysis for car brands.</p>
+          <div class="project-tech">
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">ML</span>
+          </div>
+          <div class="project-links">
+            <a href="https://carpulse.onrender.com/" target="_blank" class="project-link live-demo">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+             <a href="https://github.com/Smr2005/AutoFeel_Car_Sentiment_Analyzer_Flask.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="300">
+        <div class="project-3d-animation-area">
+          <div class="medical-3d-scene">
+            <div class="floating-heart">
+              <div class="heart-body">❤️</div>
+              <div class="heartbeat-line">
+                <div class="beat-pulse"></div>
+                <div class="beat-pulse"></div>
+                <div class="beat-pulse"></div>
+              </div>
+              <div class="medical-data">
+                <div class="data-pulse">📊</div>
+                <div class="data-pulse">🩺</div>
+                <div class="data-pulse">💊</div>
+              </div>
+            </div>
+            <div class="diagnosis-flow">
+              <div class="symptom">🤒</div>
+              <div class="analysis">🔍</div>
+              <div class="result">✅</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Disease Prediction</h3>
+          <p class="project-desc">AI-powered medical diagnosis using ML algorithms.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">AI</span>
+          </div>
+          <div class="project-links">
+            <a href="https://sameermedico.streamlit.app/" target="_blank" class="project-link live-demo">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/Smr2005/Multiple_Disease_Prediction.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="400">
+        <div class="project-3d-animation-area">
+          <div class="face-3d-scene">
+            <div class="floating-eye">
+              <div class="eye-body">👁️</div>
+              <div class="recognition-grid">
+                <div class="grid-point"></div>
+                <div class="grid-point"></div>
+                <div class="grid-point"></div>
+                <div class="grid-point"></div>
+              </div>
+              <div class="scan-line"></div>
+            </div>
+            <div class="detection-markers">
+              <div class="marker top-left">┌</div>
+              <div class="marker top-right">┐</div>
+              <div class="marker bottom-left">└</div>
+              <div class="marker bottom-right">┘</div>
+            </div>
+            <div class="confidence-meter">
+              <div class="confidence-bar"></div>
+              <span class="confidence-text">98%</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Face Recognition System</h3>
+          <p class="project-desc">Deep learning-based face recognition with OpenCV.</p>
+          <div class="project-tech">
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">Deep Learning</span>
+            <span class="tech-tag">Python</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/Smr2005/AI-Powered-Face-Recognitionapp.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="500">
+        <div class="project-3d-animation-area">
+          <div class="iot-3d-scene">
+            <div class="floating-sensor">
+              <div class="sensor-body">🔧</div>
+              <div class="gas-particles">
+                <div class="gas-cloud">💨</div>
+                <div class="alert-signal">🚨</div>
+                <div class="wifi-signal">📶</div>
+              </div>
+              <div class="sensor-readings">
+                <div class="reading">CO: 0.2ppm</div>
+                <div class="reading">CH4: 0.1%</div>
+              </div>
+            </div>
+            <div class="iot-network">
+              <div class="network-node">📱</div>
+              <div class="network-node">💻</div>
+              <div class="network-node">☁️</div>
+            </div>
+            <div class="data-transmission">
+              <div class="data-packet">📊</div>
+              <div class="data-packet">📈</div>
+              <div class="data-packet">⚡</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">IoT Gas Leak Detection</h3>
+          <p class="project-desc">Smart IoT system with real-time gas monitoring.</p>
+          <div class="project-tech">
+            <span class="tech-tag">IoT</span>
+            <span class="tech-tag">Arduino</span>
+            <span class="tech-tag">Sensors</span>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills/Technologies -->
+  <section id="skills" class="section-3d skills-3d" data-aos="fade-up">
+    <div class="section-header">
+      <h2 class="section-title-3d">💻 Technologies</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card-3d" data-aos="zoom-in">
+        <div class="skill-3d-visual">
+          <div class="python-3d-scene">
+            <div class="floating-snake">
+              <div class="snake-body">🐍</div>
+              <div class="code-particles">
+                <div class="particle">def</div>
+                <div class="particle">class</div>
+                <div class="particle">import</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fab fa-python skill-icon" style="color: #3776ab;"></i>
+        <h3 class="skill-name">Python</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="95"></div>
+        </div>
+        <span class="skill-percentage">95%</span>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="100">
+        <div class="skill-3d-visual">
+          <div class="flask-3d-scene">
+            <div class="floating-flask">
+              <div class="flask-body">🧪</div>
+              <div class="api-routes">
+                <div class="route">@app.route</div>
+                <div class="route">GET</div>
+                <div class="route">POST</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-flask skill-icon" style="color: #000000;"></i>
+        <h3 class="skill-name">Flask</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="90"></div>
+        </div>
+        <span class="skill-percentage">90%</span>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="200">
+        <div class="skill-3d-visual">
+          <div class="ml-3d-scene">
+            <div class="floating-brain">
+              <div class="brain-body">🧠</div>
+              <div class="neural-connections">
+                <div class="connection-line"></div>
+                <div class="connection-line"></div>
+                <div class="connection-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-brain skill-icon" style="color: #ff6b6b;"></i>
+        <h3 class="skill-name">Machine Learning</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="85"></div>
+        </div>
+        <span class="skill-percentage">85%</span>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="300">
+        <div class="skill-3d-visual">
+          <div class="mysql-3d-scene">
+            <div class="floating-database">
+              <div class="db-body">🗃️</div>
+              <div class="sql-queries">
+                <div class="query">SELECT</div>
+                <div class="query">INSERT</div>
+                <div class="query">UPDATE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-database skill-icon" style="color: #4479a1;"></i>
+        <h3 class="skill-name">MySQL</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="80"></div>
+        </div>
+        <span class="skill-percentage">80%</span>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="400">
+        <div class="skill-3d-visual">
+          <div class="js-3d-scene">
+            <div class="floating-js">
+              <div class="js-body">⚡</div>
+              <div class="js-functions">
+                <div class="function">function()</div>
+                <div class="function">const</div>
+                <div class="function">async</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fab fa-js-square skill-icon" style="color: #f7df1e;"></i>
+        <h3 class="skill-name">JavaScript</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="75"></div>
+        </div>
+        <span class="skill-percentage">75%</span>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="500">
+        <div class="skill-3d-visual">
+          <div class="html-3d-scene">
+            <div class="floating-html">
+              <div class="html-body">🌐</div>
+              <div class="html-tags">
+                <div class="tag">&lt;div&gt;</div>
+                <div class="tag">&lt;h1&gt;</div>
+                <div class="tag">&lt;p&gt;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fab fa-html5 skill-icon" style="color: #e34f26;"></i>
+        <h3 class="skill-name">HTML5</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="90"></div>
+        </div>
+        <span class="skill-percentage">90%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="section-3d certifications-3d" data-aos="fade-left">
+    <div class="section-header">
+      <h2 class="section-title-3d">📜 Certifications</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="certifications-grid">
+      <div class="cert-card-3d" data-aos="flip-up">
+        <div class="cert-3d-visual">
+          <div class="cloud-3d-scene">
+            <div class="floating-cloud">
+              <div class="cloud-body">☁️</div>
+              <div class="server-nodes">
+                <div class="node">💻</div>
+                <div class="node">🖥️</div>
+                <div class="node">📱</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cert-icon">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <h3 class="cert-title">Cloud Computing & Linux Commands</h3>
+        <p class="cert-issuer">Aditya College of Engineering</p>
+        <a href="/static/certificates/cloud.pdf" target="_blank" class="cert-link">
+          <i class="fas fa-external-link-alt"></i> View Certificate
+        </a>
+      </div>
+
+      <div class="cert-card-3d" data-aos="flip-up" data-aos-delay="100">
+        <div class="cert-3d-visual">
+          <div class="data-3d-scene">
+            <div class="floating-database">
+              <div class="db-body">🗄️</div>
+              <div class="data-flow">
+                <div class="data-bit">1</div>
+                <div class="data-bit">0</div>
+                <div class="data-bit">1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cert-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <h3 class="cert-title">Getting Started with Data</h3>
+        <p class="cert-issuer">IBM SkillsBuild</p>
+        <a href="/static/certificates/Getting Started with Data.pdf" target="_blank" class="cert-link">
+          <i class="fas fa-external-link-alt"></i> View Certificate
+        </a>
+      </div>
+
+      <div class="cert-card-3d" data-aos="flip-up" data-aos-delay="200">
+        <div class="cert-3d-visual">
+          <div class="ambassador-3d-scene">
+            <div class="floating-graduate">
+              <div class="graduate-body">🎓</div>
+              <div class="leadership-badges">
+                <div class="badge">👑</div>
+                <div class="badge">🏆</div>
+                <div class="badge">⭐</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cert-icon">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <h3 class="cert-title">Campus Ambassador</h3>
+        <p class="cert-issuer">Lets Upgrade</p>
+        <a href="/static/certificates/Campus Ambassador.pdf" target="_blank" class="cert-link">
+          <i class="fas fa-external-link-alt"></i> View Certificate
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internships -->
+  <section id="internships" class="section-3d internships-3d" data-aos="fade-right">
+    <div class="section-header">
+      <h2 class="section-title-3d">🧪 Internships & Experience</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="internships-timeline">
+      <div class="timeline-item" data-aos="fade-right">
+        <div class="internship-3d-visual">
+          <div class="ai-intern-3d-scene">
+            <div class="floating-robot">
+              <div class="robot-body">🤖</div>
+              <div class="ai-processes">
+                <div class="process">ML</div>
+                <div class="process">AI</div>
+                <div class="process">DL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="timeline-content">
+          <h3 class="internship-title">AI Intern</h3>
+          <p class="internship-company">Edunet Foundation</p>
+          <p class="internship-duration">TechSaksham Joint CSR Initiative by Microsoft & SAP</p>
+          <p class="internship-desc">Worked on artificial intelligence projects and machine learning model development.</p>
+          <a href="/static/certificates/AI Intern.pdf" target="_blank" class="internship-cert">
+            <i class="fas fa-certificate"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-left">
+        <div class="internship-3d-visual">
+          <div class="ds-intern-3d-scene">
+            <div class="floating-chart">
+              <div class="chart-body">📊</div>
+              <div class="data-viz">
+                <div class="viz">📈</div>
+                <div class="viz">📉</div>
+                <div class="viz">🔍</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="timeline-content">
+          <h3 class="internship-title">Data Science Intern</h3>
+          <p class="internship-company">SkillDzire Technologies Pvt. Ltd</p>
+          <p class="internship-duration">2024</p>
+          <p class="internship-desc">Developed data analysis solutions, predictive models, and data visualization dashboards.</p>
+          <a href="/static/certificates/Data Science Intern.pdf" target="_blank" class="internship-cert">
+            <i class="fas fa-certificate"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-right">
+        <div class="internship-3d-visual">
+          <div class="ai-skillbit-3d-scene">
+            <div class="floating-neural">
+              <div class="neural-body">🧠</div>
+              <div class="neural-network">
+                <div class="neuron">⚡</div>
+                <div class="neuron">🔗</div>
+                <div class="neuron">💡</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <div class="timeline-content">
+          <h3 class="internship-title">Artificial Intelligence Intern</h3>
+          <p class="internship-company">Skillbit Technologies</p>
+          <p class="internship-duration">Virtual Internship - 2024</p>
+          <p class="internship-desc">Built AI applications and worked on machine learning algorithms and neural networks.</p>
+          <a href="/static/certificates/Shaik Sameer.pdf" target="_blank" class="internship-cert">
+            <i class="fas fa-certificate"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-left">
+        <div class="internship-3d-visual">
+          <div class="analytics-3d-scene">
+            <div class="floating-analytics">
+              <div class="analytics-body">📈</div>
+              <div class="analytics-tools">
+                <div class="tool">📊</div>
+                <div class="tool">🔍</div>
+                <div class="tool">💹</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-icon">
+          <i class="fas fa-analytics"></i>
+        </div>
+        <div class="timeline-content">
+          <h3 class="internship-title">Data Analytics Intern</h3>
+          <p class="internship-company">APSCHE x SmartBridge</p>
+          <p class="internship-duration">Virtual Internship - Ongoing</p>
+          <p class="internship-desc">Working on data analytics projects, statistical analysis, and business intelligence solutions.</p>
+          <a href="static/certificates/SmartBridge certificate.pdf" target="_blank" class="internship-cert ongoing">
+            <i class="fasfa-certificate"></i>  View Certificate
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chat -->
+  <section id="chat" class="section-3d chat-3d" data-aos="zoom-in">
+    <div class="chat-3d-visual">
+      <div class="chat-bot-3d-scene">
+        <div class="floating-bot">
+          <div class="bot-body">🤖</div>
+          <div class="chat-bubbles">
+            <div class="bubble">💬</div>
+            <div class="bubble">🗨️</div>
+            <div class="bubble">💭</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">💬 Chat with Laddu</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="chat-container">
+      <div id="chatbox" class="chatbox-3d">
+        <div class="welcome-message">
+          <strong>Laddu:</strong> Hello! I'm Laddu, Sameer's friendly AI assistant. Ask me anything about his skills, projects, or experience!
+          <br><small style="color: var(--text-secondary); margin-top: 0.5rem; display: block;">
+            💡 Tip: Click the green "Speak" button to ask questions with your voice! I can respond both in text and voice.
+          </small>
+        </div>
+      </div>
+      <div class="chat-input-container">
+        <input type="text" id="userInput" class="form-input-3d" placeholder="Ask me anything about Sameer..." />
+        
+        <div class="voice-controls">
+          <button id="voice-input-btn" class="voice-button-3d microphone-btn" title="Click to speak your question">
+            <i class="fas fa-microphone"></i>
+            <span class="button-label">Speak</span>
+          </button>
+          
+          <button onclick="sendMessage()" class="chat-button">
+            <i class="fas fa-paper-plane"></i> Send
+          </button>
+          
+          <button id="voice-toggle-btn" class="voice-button-3d volume-btn" title="Toggle Voice Response">
+            <i class="fas fa-volume-up"></i>
+            <span class="button-label">Voice</span>
+          </button>
+        </div>
+      </div>
+      <div class="chat-response">  
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section-3d contact-3d" data-aos="fade-up">
+    <div class="contact-3d-visual">
+      <div class="contact-3d-scene">
+        <div class="floating-contact">
+          <div class="contact-body">📞</div>
+          <div class="contact-methods">
+            <div class="method">📧</div>
+            <div class="method">📱</div>
+            <div class="method">💬</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">📞 Contact Me</h2>
+      <div class="title-underline"></div>
+      <p class="section-subtitle">Let's connect — click below to reach out directly!</p>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:shaiksameershubhan@gmail.com" class="contact-card-3d" data-aos="zoom-in">
+        <i class="fas fa-envelope contact-icon"></i>
+        <h3 class="contact-title">Email</h3>
+        <p class="contact-info">shaiksameershubhan@gmail.com</p>
+      </a>
+
+      <a href="tel:+919652879470" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="50">
+        <i class="fas fa-phone-alt contact-icon"></i>
+        <h3 class="contact-title">Phone</h3>
+        <p class="contact-info">+91 9652879470</p>
+      </a>
+
+      <a href="https://wa.me/919652879470" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="100">
+        <i class="fab fa-whatsapp contact-icon"></i>
+        <h3 class="contact-title">WhatsApp</h3>
+        <p class="contact-info">Message Me Directly</p>
+      </a>
+
+      <a href="https://www.linkedin.com/in/shaik-sameer-69a3422a8" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="150">
+        <i class="fab fa-linkedin contact-icon"></i>
+        <h3 class="contact-title">LinkedIn</h3>
+        <p class="contact-info">Connect with me</p>
+      </a>
+
+      <a href="https://github.com/Smr2005" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="200">
+        <i class="fab fa-github contact-icon"></i>
+        <h3 class="contact-title">GitHub</h3>
+        <p class="contact-info">View my code</p>
+      </a>
+
+      <a href="https://www.instagram.com/_shaik___sameer_shubhan" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="250">
+        <i class="fab fa-instagram contact-icon"></i>
+        <h3 class="contact-title">Instagram</h3>
+        <p class="contact-info">@_shaik___sameer_shubhan</p>
+      </a>
+
+      <a href="https://www.instagram.com/s.m.r_writings" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="300">
+        <i class="fab fa-instagram contact-icon"></i>
+        <h3 class="contact-title">Poetry & Writings</h3>
+        <p class="contact-info">@s.m.r_writings</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Resume Request -->
+  <section id="resume" class="section-3d resume-3d" data-aos="fade-up">
+    <div class="resume-3d-visual">
+      <div class="resume-3d-scene">
+        <div class="floating-document">
+          <div class="document-body">📄</div>
+          <div class="document-pages">
+            <div class="page">📋</div>
+            <div class="page">📊</div>
+            <div class="page">🎓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">📄 Access Resume</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="resume-content">
+      <p class="resume-desc">Interested in my work? Access to my detailed resume!</p>
+      <form action="/request_resume" method="POST" class="resume-form-3d">
+        <div class="form-group-3d">
+          <label for="name" class="form-label-3d">Your Name</label>
+          <input type="text" id="name" name="name" class="form-input-3d" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group-3d">
+          <label for="email" class="form-label-3d">Your Email</label>
+          <input type="email" id="email" name="email" class="form-input-3d" placeholder="Enter your email address" required>
+        </div>
+        <button type="submit" class="form-button-3d">
+          <i class="fas fa-download"></i> Access 
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Floating Action Buttons -->
+  <a href="https://wa.me/919652879470" target="_blank" id="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <div id="chat-float-btn" onclick="document.getElementById('chat').scrollIntoView({behavior: 'smooth'})">
+    <div class="chat-tooltip">Hi! I'm Sameer's Assistant<br>Ask me anything!</div>
+  </div>
+
+  <!-- Particle Explosion Container -->
+  <div id="particle-explosion"></div>
+  
+  <!-- Cursor Particle Trail -->
+  <div id="cursor-particles"></div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="{{ url_for('static', filename='js/3d-animations.js') }}"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+  </script>
+</body>
+</html>
