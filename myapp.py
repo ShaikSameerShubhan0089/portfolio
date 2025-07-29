@@ -19,6 +19,10 @@ def mobile_test():
     with open('mobile_test.html', 'r') as f:
         return f.read()
 
+@app.route('/test-resume')
+def test_resume():
+    return render_template('test_resume.html')
+
 # === Resume Request Form Handler ===
 @app.route('/request_resume', methods=["POST"])
 def request_resume():
@@ -63,7 +67,10 @@ def request_resume():
         server.login(sender_email, sender_password)
         server.send_message(msg)
         server.quit()
-        return "<h3>✅ thank you for your cooperation! Sameer will respond shortly.</h3>"
+        try:
+            return render_template('resume_success.html', name=name, email=email)
+        except Exception as template_error:
+            return f"<h3>✅ Thank you {name}! Sameer will respond shortly to {email}. <br><small>Template Error: {str(template_error)}</small></h3>"
     except Exception as e:
         return f"<h3>❌ Error sending notification email: {str(e)}</h3>"
 
@@ -120,7 +127,10 @@ AI & Data Science Developer
         server.login(sender_email, sender_password)
         server.send_message(msg)
         server.quit()
-        return f"<h3>✅ Resume sent successfully to {hr_email}!</h3>"
+        try:
+            return render_template('resume_sent.html', email=hr_email, name=name)
+        except Exception as template_error:
+            return f"<h3>✅ Resume sent successfully to {hr_email}! <br><small>Template Error: {str(template_error)}</small></h3>"
     except Exception as e:
         return f"<h3>❌ Failed to send resume: {str(e)}</h3>"
 
