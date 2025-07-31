@@ -305,6 +305,19 @@
 
   <!-- Projects -->
   <section id="projects" class="section-3d projects-3d" data-aos="fade-right">
+    <div class="projects-3d-visual">
+      <div class="projects-3d-scene">
+        <div class="floating-rocket">
+          <div class="rocket-body">🚀</div>
+          <div class="project-elements">
+            <div class="element">💻</div>
+            <div class="element">🌐</div>
+            <div class="element">⚡</div>
+            <div class="element">🎯</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="section-header">
       <h2 class="section-title-3d">🚀 Projects</h2>
       <div class="title-underline"></div>
@@ -582,6 +595,19 @@
 
   <!-- Skills/Technologies -->
   <section id="skills" class="section-3d skills-3d" data-aos="fade-up">
+    <div class="skills-3d-visual">
+      <div class="skills-3d-scene">
+        <div class="floating-tech">
+          <div class="tech-body">💻</div>
+          <div class="tech-stack">
+            <div class="stack">🐍</div>
+            <div class="stack">⚛️</div>
+            <div class="stack">🔥</div>
+            <div class="stack">⚡</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="section-header">
       <h2 class="section-title-3d">💻 Technologies</h2>
       <div class="title-underline"></div>
@@ -719,6 +745,19 @@
 
   <!-- Certifications -->
   <section id="certifications" class="section-3d certifications-3d" data-aos="fade-left">
+    <div class="certifications-3d-visual">
+      <div class="certifications-3d-scene">
+        <div class="floating-certificate">
+          <div class="certificate-body">📜</div>
+          <div class="cert-badges">
+            <div class="badge">🏆</div>
+            <div class="badge">⭐</div>
+            <div class="badge">🎖️</div>
+            <div class="badge">🥇</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="section-header">
       <h2 class="section-title-3d">📜 Certifications</h2>
       <div class="title-underline"></div>
@@ -797,6 +836,19 @@
 
   <!-- Internships -->
   <section id="internships" class="section-3d internships-3d" data-aos="fade-right">
+    <div class="internships-3d-visual">
+      <div class="internships-3d-scene">
+        <div class="floating-experience">
+          <div class="experience-body">🧪</div>
+          <div class="experience-icons">
+            <div class="icon">🤖</div>
+            <div class="icon">💼</div>
+            <div class="icon">🎯</div>
+            <div class="icon">📈</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="section-header">
       <h2 class="section-title-3d">🧪 Internships & Experience</h2>
       <div class="title-underline"></div>
@@ -915,6 +967,19 @@
   <!-- Chat -->
   <!-- Enhanced Chat Section -->
   <section id="chat" class="section-3d enhanced-chat-3d" data-aos="zoom-in">
+    <div class="chat-3d-visual">
+      <div class="chat-3d-scene">
+        <div class="floating-chat">
+          <div class="chat-body">💬</div>
+          <div class="chat-elements">
+            <div class="element">AI</div>
+            <div class="element">🤖</div>
+            <div class="element">💭</div>
+            <div class="element">✨</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="chat-header">
       <h2 class="chat-main-title">Chat with Laddu - Sameer's AI</h2>
       <div class="title-underline"></div>
@@ -1049,6 +1114,19 @@
 
   <!-- Enhanced Contact & Resume Section -->
   <section id="resume" class="section-3d contact-resume-3d" data-aos="fade-up">
+    <div class="resume-3d-visual">
+      <div class="resume-3d-scene">
+        <div class="floating-resume">
+          <div class="resume-body">📄</div>
+          <div class="resume-elements">
+            <div class="element">CV</div>
+            <div class="element">📊</div>
+            <div class="element">🎓</div>
+            <div class="element">💼</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="section-header">
       <h2 class="section-title-3d">📄 Access My Resume</h2>
       <div class="title-underline"></div>
@@ -1289,6 +1367,39 @@
       }
     }
     
+    // Smooth scrolling for navigation links
+    function initializeSmoothScrolling() {
+      const navLinks = document.querySelectorAll('.nav-link-3d');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+          
+          if (targetSection) {
+            // Close mobile menu if open
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu-3d');
+            const body = document.body;
+            
+            if (navToggle && navMenu) {
+              navToggle.classList.remove('active');
+              navMenu.classList.remove('active');
+              body.classList.remove('nav-open');
+            }
+            
+            // Smooth scroll to target
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    }
+    
     // Fix mobile viewport height
     function setMobileViewportHeight() {
       const vh = window.innerHeight * 0.01;
@@ -1300,11 +1411,13 @@
       document.addEventListener('DOMContentLoaded', function() {
         initializeOptimizedExperience();
         initializeMobileNavigation();
+        initializeSmoothScrolling();
         setMobileViewportHeight();
       });
     } else {
       initializeOptimizedExperience();
       initializeMobileNavigation();
+      initializeSmoothScrolling();
       setMobileViewportHeight();
     }
     
@@ -1346,6 +1459,19 @@
         });
       });
     }
+    
+    // Hide loading screen after page loads
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        if (loadingOverlay) {
+          loadingOverlay.classList.add('hidden');
+          setTimeout(function() {
+            loadingOverlay.style.display = 'none';
+          }, 500);
+        }
+      }, 1000);
+    });
   </script>
 </body>
 </html>
