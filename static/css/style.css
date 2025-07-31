@@ -13,7 +13,7 @@
 
 /* Smooth Scrolling for All Browsers */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important;
   -webkit-scroll-behavior: smooth;
   -moz-scroll-behavior: smooth;
   -ms-scroll-behavior: smooth;
@@ -32,10 +32,43 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+/* Ensure sections are properly positioned for navigation */
+section[id] {
+  scroll-margin-top: 100px !important;
+}
+
+/* Ensure navbar is above all content */
+.navbar-3d {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+  background: rgba(10, 10, 10, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2) !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 1rem 2rem !important;
+}
+
+/* Ensure nav links work properly */
+.nav-link-3d {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 10000 !important;
+}
+
 /* Enhanced Body Styles for All Platforms */
 body {
   /* Prevent horizontal scroll */
   overflow-x: hidden;
+  
+  /* Add padding for fixed navbar */
+  padding-top: 80px !important;
   
   /* Touch optimization */
   -webkit-touch-callout: none;
@@ -71,6 +104,443 @@ html, body {
   body {
     min-height: -webkit-fill-available;
   }
+}
+
+
+
+/* === ENHANCED 3D SECTION ANIMATIONS === */
+.section-3d {
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: rgba(10, 10, 10, 0.8) !important;
+  border: 1px solid rgba(0, 255, 255, 0.2) !important;
+  margin: 2rem auto !important;
+  max-width: 1200px !important;
+  width: 90% !important;
+  position: relative !important;
+  z-index: 1 !important;
+  
+  /* 3D Transform Properties */
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  
+  /* Continuous Subtle Animation */
+  animation: sectionFloat 6s ease-in-out infinite;
+  
+  /* Enhanced Visual Effects */
+  box-shadow: 
+    0 10px 30px rgba(0, 255, 255, 0.1),
+    0 0 50px rgba(0, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  
+  /* Backdrop Effects */
+  backdrop-filter: blur(20px) saturate(180%);
+  
+  /* Transition for Smooth Effects */
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Section Hover Effects */
+.section-3d:hover {
+  transform: translateY(-5px) rotateX(2deg) rotateY(1deg);
+  box-shadow: 
+    0 20px 60px rgba(0, 255, 255, 0.2),
+    0 0 80px rgba(0, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(0, 255, 255, 0.4);
+}
+
+/* Individual Section Animations */
+.about-3d {
+  animation: sectionFloat 6s ease-in-out infinite, aboutPulse 8s ease-in-out infinite;
+}
+
+.projects-3d {
+  animation: sectionFloat 6s ease-in-out infinite 0.5s, projectsRotate 10s linear infinite;
+}
+
+.skills-3d {
+  animation: sectionFloat 6s ease-in-out infinite 1s, skillsGlow 4s ease-in-out infinite;
+}
+
+.certifications-3d {
+  animation: sectionFloat 6s ease-in-out infinite 1.5s, certificationsShimmer 7s ease-in-out infinite;
+}
+
+.internships-3d {
+  animation: sectionFloat 6s ease-in-out infinite 2s, internshipsWave 9s ease-in-out infinite;
+}
+
+.enhanced-chat-3d {
+  animation: sectionFloat 6s ease-in-out infinite 2.5s, chatBounce 5s ease-in-out infinite;
+}
+
+.contact-3d {
+  animation: sectionFloat 6s ease-in-out infinite 3s, contactPulse 6s ease-in-out infinite;
+}
+
+.contact-resume-3d {
+  animation: sectionFloat 6s ease-in-out infinite 3.5s, resumeGlow 8s ease-in-out infinite;
+}
+
+/* Ensure all specific sections are visible */
+.projects-3d,
+.certifications-3d,
+.internships-3d,
+.enhanced-chat-3d,
+.contact-3d,
+.contact-resume-3d,
+.about-3d,
+.skills-3d {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.project-card-3d,
+.skill-card-3d {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 1 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+  min-height: 250px !important;
+  flex-direction: column !important;
+  padding: 1rem !important;
+  border-radius: 15px !important;
+  backdrop-filter: blur(10px) !important;
+  /* Override any AOS hiding */
+  transform: none !important;
+}
+
+/* Force visibility for AOS elements */
+[data-aos] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Clean card styling - removed debug colors */
+
+/* Ensure card content is visible */
+.project-content,
+.skill-content {
+  display: flex !important;
+  flex-direction: column !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 2 !important;
+}
+
+.project-title,
+.skill-name {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: var(--primary-cyan) !important;
+  font-size: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.project-desc {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: var(--text-secondary) !important;
+  margin-bottom: 1rem !important;
+}
+
+/* Ensure tech tags and other card elements are visible */
+.project-tech,
+.skill-progress-container {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  margin-top: 1rem !important;
+}
+
+.tech-tag {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: rgba(0, 255, 255, 0.2) !important;
+  color: var(--primary-cyan) !important;
+  padding: 0.3rem 0.8rem !important;
+  border-radius: 15px !important;
+  font-size: 0.8rem !important;
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+}
+
+.project-3d-animation-area,
+.skill-3d-animation-area,
+.chat-3d-animation-area,
+.resume-3d-animation-area {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 120px !important;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 215, 0, 0.05)) !important;
+  border-radius: 20px 20px 0 0 !important;
+}
+
+/* Ensure certification cards are visible */
+.certifications-grid {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: 2rem !important;
+  margin-top: 2rem !important;
+}
+
+.cert-card-3d {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-direction: column !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+  border-radius: 15px !important;
+  padding: 1.5rem !important;
+  min-height: 220px !important;
+  backdrop-filter: blur(10px) !important;
+  /* Override any AOS hiding */
+  transform: none !important;
+}
+
+/* Ensure certification content is visible */
+.cert-icon,
+.cert-title,
+.cert-issuer,
+.cert-link {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.cert-3d-visual {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100px !important;
+}
+
+/* Ensure internship timeline is visible */
+.internships-timeline {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  margin-top: 2rem !important;
+}
+
+.timeline-item {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin-bottom: 2rem !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+  border-radius: 20px !important;
+  padding: 1.5rem !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Ensure contact grid is visible */
+.contact-grid {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  gap: 2rem !important;
+  margin-top: 2rem !important;
+}
+
+.contact-card-3d {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  text-decoration: none !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Ensure chat interface is visible */
+.chat-interface,
+.enhanced-chat-3d {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: rgba(10, 10, 10, 0.8) !important;
+  border: 1px solid rgba(0, 255, 255, 0.2) !important;
+  border-radius: 15px !important;
+  padding: 2rem !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Ensure chat container and elements are visible */
+.enhanced-chat-container {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 3rem !important;
+  margin-top: 2rem !important;
+}
+
+.chat-left,
+.chat-right {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.ai-assistant-info,
+.chat-messages,
+.chat-input-container {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.chat-header,
+.chat-main-title,
+.ai-name,
+.ai-description {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: var(--text-primary) !important;
+}
+
+/* Responsive design for chat section */
+@media (max-width: 768px) {
+  .enhanced-chat-container {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+}
+
+/* Ensure resume section is visible */
+.contact-resume-container {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 3rem !important;
+  margin-top: 2rem !important;
+}
+
+.contact-left,
+.contact-right {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.resume-form-container {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(0, 255, 255, 0.3) !important;
+  border-radius: 20px !important;
+  padding: 2rem !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.resume-form {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Enhanced Text Content with Animations */
+.section-title-3d,
+.section-subtitle,
+.cert-title,
+.cert-issuer,
+.timeline-title,
+.timeline-company,
+.timeline-desc,
+.contact-title,
+.form-title,
+.form-subtitle {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: var(--text-primary) !important;
+  
+  /* 3D Text Effects */
+  text-shadow: 
+    0 0 10px rgba(0, 255, 255, 0.3),
+    0 0 20px rgba(0, 255, 255, 0.1),
+    0 0 30px rgba(0, 255, 255, 0.05);
+  
+  /* Subtle Animation */
+  animation: textGlow 4s ease-in-out infinite;
+  
+  /* Transform Properties */
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+/* Section Title Specific Animations */
+.section-title-3d {
+  animation: titleFloat 5s ease-in-out infinite, textGlow 4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.section-title-3d:hover {
+  transform: translateY(-2px) rotateX(5deg);
+  text-shadow: 
+    0 0 15px rgba(0, 255, 255, 0.5),
+    0 0 30px rgba(0, 255, 255, 0.2),
+    0 0 45px rgba(0, 255, 255, 0.1);
+}
+
+/* Ensure all buttons and links are visible */
+.resume-btn,
+.chat-btn,
+.project-link,
+.cert-link {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: rgba(0, 255, 255, 0.2) !important;
+  border: 1px solid var(--primary-cyan) !important;
+  color: var(--primary-cyan) !important;
+  padding: 0.8rem 1.5rem !important;
+  border-radius: 15px !important;
+  text-decoration: none !important;
+}
+
+.projects-grid,
+.skills-grid {
+  display: grid !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  padding: 1rem !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 1.5rem !important;
 }
 
 /* === General Reset & Base === */
@@ -615,10 +1085,12 @@ body.mobile-device textarea {
 }
 
 .nav-menu-3d {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  align-items: center;
+  display: flex !important;
+  list-style: none !important;
+  gap: 2rem !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .nav-link-3d {
@@ -2023,32 +2495,47 @@ body.mobile-device textarea {
 
 /* Chat Input Area */
 .chat-input-container {
-  padding: 1.5rem;
+  padding: 1rem;
   border-top: 1px solid rgba(0, 255, 255, 0.2);
   background: rgba(0, 255, 255, 0.05);
+  border-radius: 0 0 15px 15px;
 }
 
 .chat-input-wrapper {
   display: flex;
-  gap: 1rem;
-  align-items: flex-end;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: stretch;
 }
 
 /* === ENHANCED CHAT INPUT FOR ALL PLATFORMS === */
 .chat-input {
-  flex: 1;
-  padding: 1rem;
-  background: rgba(0, 255, 255, 0.08);
-  border: 2px solid rgba(0, 255, 255, 0.3);
-  border-radius: 15px;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
   color: var(--text-primary);
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-family: inherit;
   resize: none;
-  min-height: 50px;
-  max-height: 120px;
+  min-height: 45px;
+  max-height: 90px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--primary-cyan);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.chat-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
   
   /* Cross-browser compatibility */
   -webkit-appearance: none;
@@ -2124,25 +2611,35 @@ body.mobile-device textarea {
 
 .chat-controls {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0;
+  padding: 0;
+  align-items: center;
 }
 
 /* === ENHANCED CHAT BUTTONS FOR ALL PLATFORMS === */
 .chat-btn {
-  width: 50px;
-  height: 50px;
-  border: none;
-  border-radius: 12px;
+  background: rgba(0, 255, 255, 0.15) !important;
+  border: 1px solid rgba(0, 255, 255, 0.4) !important;
+  color: var(--primary-cyan) !important;
+  padding: 0.6rem 1rem !important;
+  border-radius: 10px !important;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
-  color: #000000;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  min-height: 36px;
+  min-width: 80px;
+  white-space: nowrap;
   position: relative;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   
   /* Cross-browser compatibility */
@@ -2224,30 +2721,10 @@ body.mobile-device textarea {
 
 /* Enhanced hover effects for all platforms */
 .chat-btn:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-}
-
-.chat-btn:hover::before {
-  opacity: 1;
-}
-
-.voice-btn:hover {
-  box-shadow: 
-    0 8px 25px rgba(0, 255, 255, 0.4),
-    0 0 30px rgba(0, 255, 255, 0.2);
-}
-
-.audio-btn:hover {
-  box-shadow: 
-    0 8px 25px rgba(0, 255, 255, 0.4),
-    0 0 30px rgba(0, 255, 255, 0.2);
-}
-
-.send-btn:hover {
-  box-shadow: 
-    0 8px 25px rgba(0, 255, 255, 0.4),
-    0 0 30px rgba(0, 255, 255, 0.2);
+  background: var(--primary-cyan) !important;
+  color: var(--dark-bg) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
 }
 
 /* Active states for better feedback */
@@ -2267,10 +2744,8 @@ body.mobile-device textarea {
 /* Mobile touch optimizations */
 @media (hover: none) and (pointer: coarse) {
   .chat-btn {
-    width: 55px;
-    height: 55px;
-    font-size: 1.2rem;
-    min-height: 55px; /* iOS fix */
+    min-height: 44px;
+    padding: 0.8rem 1rem !important;
   }
   
   .chat-btn:hover {
@@ -2285,11 +2760,19 @@ body.mobile-device textarea {
   .chat-input {
     font-size: 16px; /* Prevents zoom on iOS */
     padding: 1.2rem;
-    min-height: 55px;
+    min-height: 70px;
+  }
+  
+  .chat-input-wrapper {
+    gap: 1rem;
   }
   
   .chat-input-container {
     padding: 1rem;
+  }
+  
+  .chat-controls {
+    padding: 0.5rem 0;
   }
 }
 
@@ -2373,7 +2856,7 @@ body.mobile-device textarea {
 .btn-label {
   font-size: 0.7rem;
   font-weight: 600;
-  margin-top: 2px;
+  margin-left: 0.4rem;
   text-align: center;
 }
 
@@ -2560,7 +3043,9 @@ body.mobile-device textarea {
     gap: 1.5rem;
   }
   
-  .project-3d-animation-area {
+  .project-3d-animation-area,
+  .chat-3d-animation-area,
+  .resume-3d-animation-area {
     height: 160px;
     padding: 1.5rem;
   }
@@ -2587,7 +3072,9 @@ body.mobile-device textarea {
     gap: 1.5rem;
   }
   
-  .project-3d-animation-area {
+  .project-3d-animation-area,
+  .chat-3d-animation-area,
+  .resume-3d-animation-area {
     height: 140px;
     padding: 1rem;
   }
@@ -2623,7 +3110,9 @@ body.mobile-device textarea {
     gap: 1rem;
   }
   
-  .project-3d-animation-area {
+  .project-3d-animation-area,
+  .chat-3d-animation-area,
+  .resume-3d-animation-area {
     height: 120px;
     padding: 0.8rem;
   }
@@ -6408,7 +6897,7 @@ body.mobile-device textarea {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 2rem;
   margin-top: 3rem;
 }
@@ -6429,9 +6918,7 @@ body.mobile-device textarea {
 }
 
 .skill-card-3d:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: var(--shadow-intense);
-  border-color: var(--primary-cyan);
+  /* Hover effects disabled */
 }
 
 .skill-3d-animation-area {
@@ -8599,15 +9086,678 @@ body.mobile-device textarea {
   }
 }
 
-/* Network-aware optimizations */
-@media (prefers-reduced-data: reduce) {
-  .particles-container,
-  .geometric-shapes,
-  .bg-elements {
+/* === NEW 3D ANIMATIONS FOR CHAT AND RESUME SECTIONS === */
+
+/* Chat 3D Animation */
+.chat-3d-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-chat-bubble {
+  position: relative;
+  animation: floatChat 3s ease-in-out infinite;
+}
+
+.chat-bubble-main {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.5));
+  animation: pulseChat 2s ease-in-out infinite;
+}
+
+.chat-particles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chat-particles .particle {
+  position: absolute;
+  font-size: 1rem;
+  color: var(--primary-cyan);
+  animation: orbitChat 4s linear infinite;
+  opacity: 0.8;
+}
+
+.chat-particles .particle:nth-child(1) {
+  animation-delay: 0s;
+  transform: rotate(0deg) translateX(60px) rotate(0deg);
+}
+
+.chat-particles .particle:nth-child(2) {
+  animation-delay: 1s;
+  transform: rotate(90deg) translateX(60px) rotate(-90deg);
+}
+
+.chat-particles .particle:nth-child(3) {
+  animation-delay: 2s;
+  transform: rotate(180deg) translateX(60px) rotate(-180deg);
+}
+
+.chat-particles .particle:nth-child(4) {
+  animation-delay: 3s;
+  transform: rotate(270deg) translateX(60px) rotate(-270deg);
+}
+
+@keyframes floatChat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes pulseChat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes orbitChat {
+  0% { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+}
+
+/* Resume 3D Animation */
+.resume-3d-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-document {
+  position: relative;
+  animation: floatDocument 3.5s ease-in-out infinite;
+}
+
+.document-main {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+  animation: pulseDocument 2.5s ease-in-out infinite;
+}
+
+.document-elements {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.document-elements .element {
+  position: absolute;
+  font-size: 1rem;
+  color: var(--accent-gold);
+  animation: orbitDocument 5s linear infinite;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.document-elements .element:nth-child(1) {
+  animation-delay: 0s;
+  transform: rotate(0deg) translateX(70px) rotate(0deg);
+}
+
+.document-elements .element:nth-child(2) {
+  animation-delay: 1.25s;
+  transform: rotate(90deg) translateX(70px) rotate(-90deg);
+}
+
+.document-elements .element:nth-child(3) {
+  animation-delay: 2.5s;
+  transform: rotate(180deg) translateX(70px) rotate(-180deg);
+}
+
+.document-elements .element:nth-child(4) {
+  animation-delay: 3.75s;
+  transform: rotate(270deg) translateX(70px) rotate(-270deg);
+}
+
+@keyframes floatDocument {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-3deg); }
+}
+
+@keyframes pulseDocument {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes orbitDocument {
+  0% { transform: rotate(0deg) translateX(70px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(70px) rotate(-360deg); }
+}
+
+/* Mobile responsiveness for new animations */
+@media (max-width: 768px) {
+  .chat-particles .particle,
+  .document-elements .element {
+    font-size: 0.8rem;
+  }
+  
+  .chat-particles .particle:nth-child(n) {
+    transform: rotate(var(--rotation, 0deg)) translateX(40px) rotate(calc(-1 * var(--rotation, 0deg)));
+  }
+  
+  .document-elements .element:nth-child(n) {
+    transform: rotate(var(--rotation, 0deg)) translateX(50px) rotate(calc(-1 * var(--rotation, 0deg)));
+  }
+  
+  .chat-bubble-main,
+  .document-main {
+    font-size: 2.5rem;
+  }
+}
+
+/* === COMPREHENSIVE SECTION KEYFRAME ANIMATIONS === */
+
+/* Base Section Float Animation */
+@keyframes sectionFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
+  }
+  50% { 
+    transform: translateY(-8px) rotateX(1deg) rotateY(0.5deg); 
+  }
+}
+
+/* About Section - Pulsing Effect */
+@keyframes aboutPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 10px 30px rgba(0, 255, 255, 0.1),
+      0 0 50px rgba(0, 255, 255, 0.05);
+  }
+  50% { 
+    box-shadow: 
+      0 15px 40px rgba(0, 255, 255, 0.2),
+      0 0 70px rgba(0, 255, 255, 0.1);
+  }
+}
+
+/* Projects Section - Subtle Rotation */
+@keyframes projectsRotate {
+  0% { 
+    transform: translateY(0px) rotateY(0deg); 
+  }
+  25% { 
+    transform: translateY(-5px) rotateY(0.5deg); 
+  }
+  50% { 
+    transform: translateY(-8px) rotateY(0deg); 
+  }
+  75% { 
+    transform: translateY(-5px) rotateY(-0.5deg); 
+  }
+  100% { 
+    transform: translateY(0px) rotateY(0deg); 
+  }
+}
+
+/* Skills Section - Glowing Effect */
+@keyframes skillsGlow {
+  0%, 100% { 
+    border-color: rgba(0, 255, 255, 0.2);
+    box-shadow: 
+      0 10px 30px rgba(0, 255, 255, 0.1),
+      0 0 50px rgba(0, 255, 255, 0.05);
+  }
+  50% { 
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 
+      0 15px 40px rgba(0, 255, 255, 0.2),
+      0 0 80px rgba(0, 255, 255, 0.15);
+  }
+}
+
+/* Certifications Section - Shimmer Effect */
+@keyframes certificationsShimmer {
+  0% { 
+    background: rgba(10, 10, 10, 0.8);
+  }
+  50% { 
+    background: rgba(10, 10, 10, 0.9);
+  }
+  100% { 
+    background: rgba(10, 10, 10, 0.8);
+  }
+}
+
+/* Internships Section - Wave Effect */
+@keyframes internshipsWave {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(0deg); 
+  }
+  33% { 
+    transform: translateY(-6px) rotateX(1deg); 
+  }
+  66% { 
+    transform: translateY(-3px) rotateX(-0.5deg); 
+  }
+}
+
+/* Chat Section - Bounce Effect */
+@keyframes chatBounce {
+  0%, 100% { 
+    transform: translateY(0px) scale(1); 
+  }
+  50% { 
+    transform: translateY(-10px) scale(1.02); 
+  }
+}
+
+/* Contact Section - Pulse Effect */
+@keyframes contactPulse {
+  0%, 100% { 
+    transform: translateY(0px) scale(1);
+    box-shadow: 
+      0 10px 30px rgba(0, 255, 255, 0.1),
+      0 0 50px rgba(0, 255, 255, 0.05);
+  }
+  50% { 
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 
+      0 20px 50px rgba(0, 255, 255, 0.15),
+      0 0 70px rgba(0, 255, 255, 0.1);
+  }
+}
+
+/* Resume Section - Glow Effect */
+@keyframes resumeGlow {
+  0%, 100% { 
+    border-color: rgba(0, 255, 255, 0.2);
+    box-shadow: 
+      0 10px 30px rgba(255, 215, 0, 0.1),
+      0 0 50px rgba(0, 255, 255, 0.05);
+  }
+  50% { 
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 
+      0 15px 40px rgba(255, 215, 0, 0.2),
+      0 0 80px rgba(255, 215, 0, 0.1);
+  }
+}
+
+/* Enhanced Section Entrance Animations */
+.section-3d[data-aos="fade-up"] {
+  animation-delay: 0.2s;
+}
+
+.section-3d[data-aos="fade-right"] {
+  animation-delay: 0.4s;
+}
+
+.section-3d[data-aos="fade-left"] {
+  animation-delay: 0.6s;
+}
+
+.section-3d[data-aos="zoom-in"] {
+  animation-delay: 0.8s;
+}
+
+/* Scroll-based Animation Enhancements */
+.section-3d.aos-animate {
+  animation-play-state: running;
+}
+
+/* Mobile Optimizations for Animations */
+@media (max-width: 768px) {
+  .section-3d {
+    animation-duration: 8s; /* Slower on mobile for better performance */
+  }
+  
+  .section-3d:hover {
+    transform: translateY(-3px) rotateX(1deg) rotateY(0.5deg);
+  }
+  
+  /* Reduce animation intensity on mobile */
+  @keyframes sectionFloat {
+    0%, 100% { 
+      transform: translateY(0px); 
+    }
+    50% { 
+      transform: translateY(-5px); 
+    }
+  }
+}
+
+/* Text Animation Keyframes */
+@keyframes textGlow {
+  0%, 100% { 
+    text-shadow: 
+      0 0 10px rgba(0, 255, 255, 0.3),
+      0 0 20px rgba(0, 255, 255, 0.1),
+      0 0 30px rgba(0, 255, 255, 0.05);
+  }
+  50% { 
+    text-shadow: 
+      0 0 15px rgba(0, 255, 255, 0.4),
+      0 0 25px rgba(0, 255, 255, 0.2),
+      0 0 35px rgba(0, 255, 255, 0.1);
+  }
+}
+
+@keyframes titleFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(0deg); 
+  }
+  50% { 
+    transform: translateY(-3px) rotateX(2deg); 
+  }
+}
+
+/* Card Animation Enhancements */
+.project-card-3d,
+.skill-card-3d,
+.cert-card-3d,
+.contact-card-3d {
+  animation: cardFloat 7s ease-in-out infinite;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-3d:nth-child(odd) {
+  animation-delay: 0.5s;
+}
+
+.project-card-3d:nth-child(even) {
+  animation-delay: 1s;
+}
+
+.skill-card-3d:nth-child(odd) {
+  animation-delay: 0.3s;
+}
+
+.skill-card-3d:nth-child(even) {
+  animation-delay: 0.8s;
+}
+
+@keyframes cardFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
+  }
+  33% { 
+    transform: translateY(-5px) rotateX(1deg) rotateY(0.5deg); 
+  }
+  66% { 
+    transform: translateY(-2px) rotateX(-0.5deg) rotateY(-0.3deg); 
+  }
+}
+
+/* Enhanced Card Hover Effects */
+.project-card-3d:hover,
+.skill-card-3d:hover,
+.cert-card-3d:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(2deg) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(0, 255, 255, 0.2),
+    0 0 60px rgba(0, 255, 255, 0.1);
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .section-3d,
+  .section-title-3d,
+  .project-card-3d,
+  .skill-card-3d,
+  .cert-card-3d {
+    animation: none;
+  }
+  
+  .section-3d:hover {
+    transform: translateY(-2px);
+  }
+  
+  .section-title-3d:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* === 3D VISUAL AREAS FOR ALL SECTIONS === */
+
+/* Base styling for all section 3D visuals */
+.about-3d-visual,
+.projects-3d-visual,
+.skills-3d-visual,
+.certifications-3d-visual,
+.internships-3d-visual,
+.chat-3d-visual,
+.resume-3d-visual,
+.contact-3d-visual {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 200px;
+  height: 150px;
+  z-index: 10;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* Individual 3D scenes */
+.about-3d-scene,
+.projects-3d-scene,
+.skills-3d-scene,
+.certifications-3d-scene,
+.internships-3d-scene,
+.chat-3d-scene,
+.resume-3d-scene,
+.contact-3d-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
+/* Floating elements base styling */
+.floating-profile,
+.floating-rocket,
+.floating-tech,
+.floating-certificate,
+.floating-experience,
+.floating-chat,
+.floating-resume {
+  position: relative;
+  animation: sectionVisualFloat 4s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* Main body elements */
+.profile-body,
+.rocket-body,
+.tech-body,
+.certificate-body,
+.experience-body,
+.chat-body,
+.resume-body {
+  font-size: 3rem;
+  text-align: center;
+  filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.6));
+  animation: mainElementPulse 3s ease-in-out infinite;
+}
+
+/* Orbiting elements containers */
+.achievement-badges,
+.project-elements,
+.tech-stack,
+.cert-badges,
+.experience-icons,
+.chat-elements,
+.resume-elements {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+}
+
+/* Individual orbiting elements */
+.achievement,
+.element,
+.stack,
+.badge,
+.icon {
+  position: absolute;
+  font-size: 1.2rem;
+  color: var(--primary-cyan);
+  animation: orbitElements 6s linear infinite;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.4));
+}
+
+/* Positioning for 4 orbiting elements */
+.achievement:nth-child(1),
+.element:nth-child(1),
+.stack:nth-child(1),
+.badge:nth-child(1),
+.icon:nth-child(1) {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 0s;
+}
+
+.achievement:nth-child(2),
+.element:nth-child(2),
+.stack:nth-child(2),
+.badge:nth-child(2),
+.icon:nth-child(2) {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  animation-delay: 1.5s;
+}
+
+.achievement:nth-child(3),
+.element:nth-child(3),
+.stack:nth-child(3),
+.badge:nth-child(3),
+.icon:nth-child(3) {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 3s;
+}
+
+.achievement:nth-child(4),
+.element:nth-child(4),
+.stack:nth-child(4),
+.badge:nth-child(4),
+.icon:nth-child(4) {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  animation-delay: 4.5s;
+}
+
+/* Animation keyframes */
+@keyframes sectionVisualFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotateY(0deg); 
+  }
+  50% { 
+    transform: translateY(-10px) rotateY(5deg); 
+  }
+}
+
+@keyframes mainElementPulse {
+  0%, 100% { 
+    transform: scale(1);
+    filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.6));
+  }
+  50% { 
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.8));
+  }
+}
+
+@keyframes orbitElements {
+  0% { 
+    transform: rotate(0deg) translateX(60px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% { 
+    transform: rotate(360deg) translateX(60px) rotate(-360deg);
+    opacity: 0.7;
+  }
+}
+
+/* Mobile responsiveness for 3D visuals */
+@media (max-width: 768px) {
+  .about-3d-visual,
+  .projects-3d-visual,
+  .skills-3d-visual,
+  .certifications-3d-visual,
+  .internships-3d-visual,
+  .chat-3d-visual,
+  .resume-3d-visual,
+  .contact-3d-visual {
+    width: 120px;
+    height: 100px;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .profile-body,
+  .rocket-body,
+  .tech-body,
+  .certificate-body,
+  .experience-body,
+  .chat-body,
+  .resume-body {
+    font-size: 2rem;
+  }
+  
+  .achievement,
+  .element,
+  .stack,
+  .badge,
+  .icon {
+    font-size: 0.9rem;
+  }
+  
+  .achievement-badges,
+  .project-elements,
+  .tech-stack,
+  .cert-badges,
+  .experience-icons,
+  .chat-elements,
+  .resume-elements {
+    width: 80px;
+    height: 80px;
+  }
+  
+  @keyframes orbitElements {
+    0% { 
+      transform: rotate(0deg) translateX(40px) rotate(0deg);
+    }
+    100% { 
+      transform: rotate(360deg) translateX(40px) rotate(-360deg);
+    }
+  }
+}
+
+/* Hide on very small screens */
+@media (max-width: 480px) {
+  .about-3d-visual,
+  .projects-3d-visual,
+  .skills-3d-visual,
+  .certifications-3d-visual,
+  .internships-3d-visual,
+  .chat-3d-visual,
+  .resume-3d-visual,
+  .contact-3d-visual {
     display: none;
   }
   
-  .hero-bg-video {
-    display: none;
-  }
-}
