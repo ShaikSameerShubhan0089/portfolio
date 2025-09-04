@@ -1,0 +1,6 @@
+Flask
+Flask-Cors
+numpy
+three.js
+pythreejs
+gunicorn
