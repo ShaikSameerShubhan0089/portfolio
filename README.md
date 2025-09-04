@@ -300,29 +300,34 @@ ANALYTICS_ID=your-analytics-id
 
 ### 📁 Project Structure
 ```
-📁 sameer-portfolio/
-├── 📄 myapp.py                 # Flask application
-├── 📄 requirements.txt         # Python dependencies
-├── 📄 .env.example            # Environment template
-├── 📄 mobile_test.html        # Mobile testing suite
-├── 📄 README.md               # This file
-├── 📄 MOBILE_TESTING.md       # Testing documentation
-├── 📄 GIT_DEPLOYMENT.md       # Deployment guide
+📁 my port/
+├── 📄 myapp.py                  # Flask application
+├── 📄 requirements.txt          # Python dependencies
+├── 📄 render.yaml               # Render deployment config
+├── 📄 .env.example              # Environment template
+├── 📄 README.md                 # Documentation
 │
 ├── 📁 templates/
-│   ├── 📄 index.html          # Main portfolio page
-│   └── 📄 test_resume.html    # Resume test page
+│   ├── 📄 index.html            # Main portfolio page
+│   ├── 📄 mobile_test.html      # Mobile testing page
+│   ├── 📄 resume_sent.html      # Resume request acknowledgment
+│   └── 📄 resume_success.html   # Resume sent confirmation
 │
 ├── 📁 static/
 │   ├── 📁 css/
-│   │   └── 📄 style.css       # Main stylesheet
+│   │   └── 📄 style.css         # Main stylesheet
 │   ├── 📁 js/
-│   │   └── 📄 3d-animations.js # 3D animations
+│   │   ├── 📄 3d-animations.js  # 3D animations and UI
+│   │   └── 📄 chatbot.js        # Chat assistant UI
 │   ├── 📁 images/
-│   │   ├── 📄 profile.jpg     # Profile image
-│   │   └── 📄 [other images]  # Project images
-│   └── 📁 certificates/
-│       └── 📄 [certificates]  # Achievement files
+│   │   ├── 📄 chatbot-icon.png  # Favicon used
+│   │   └── 📄 sameer-bg.jpg     # Background image
+│   ├── 📁 certificates/
+│   │   └── 📄 ...               # PDF certificates
+│   └── 📁 resume/
+│       └── 📄 sameer_resume.pdf # Resume file
+│
+└── 📁 portfolio-3d-enhanced/    # Legacy demo (optional)
 ```
 
 ### 🛠️ Development Commands
