@@ -5,6 +5,8 @@ __pycache__/
 
 # Environments
 .env
+# allow example env to be committed
+!.env.example
 .env.*
 .venv/
 venv/
