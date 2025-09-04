@@ -28,11 +28,8 @@
   <meta http-equiv="Cache-Control" content="public, max-age=31536000">
   <meta name="robots" content="index, follow">
   
-  <!-- Favicon for all devices -->
-  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/chatbot-icon.png') }}">
   
   <!-- Stylesheets with preload for performance -->
   <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}" as="style">
@@ -45,6 +42,9 @@
   <script src="https://kit.fontawesome.com/23db9cb3f7.js" crossorigin="anonymous" async></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+  <script defer src="{{ url_for('static', filename='js/3d-animations.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
 </head>
 <body>
   <!-- Loading Screen -->

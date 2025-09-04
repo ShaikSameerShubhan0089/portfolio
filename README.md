@@ -116,6 +116,8 @@ This portfolio includes a unique **mobile testing suite** (`mobile_test.html`) t
 ### 🚀 Access Mobile Test Suite
 Visit `/mobile-test` to run comprehensive compatibility tests on any device.
 
+If running locally: open http://localhost:5000/mobile-test
+
 ---
 
 ## 🛠️ Technologies Used
