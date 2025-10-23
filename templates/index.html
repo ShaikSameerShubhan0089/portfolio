@@ -11,10 +11,6 @@
   <meta name="author" content="Sameer Shaik">
   
   <!-- Mobile & Touch Device Optimizations -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Sameer Portfolio">
   <meta name="application-name" content="Sameer Portfolio">
   <meta name="msapplication-TileColor" content="#00ffff">
   <meta name="theme-color" content="#00ffff">
@@ -41,8 +37,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   
+  <style>
+  @media (max-width: 768px){
+    .mobile-drawer{
+      position:fixed; top:0; left:0; height:100vh; width:var(--mobile-drawer-width);
+      background: linear-gradient(180deg, rgba(10,10,10,0.98), rgba(16,16,30,0.95));
+      transform: translateX(-110%); transition: transform 350ms cubic-bezier(.2,.9,.25,1);
+      z-index:10001; padding:1.25rem; display:flex; flex-direction:column; gap:.75rem; overflow-y:auto; -webkit-overflow-scrolling:touch;
+    }
+    .mobile-drawer.open{ transform: translateX(0%); }
+    .mobile-drawer .nav-menu-3d{ display:flex; flex-direction:column; gap:.75rem; margin-top:.5rem; }
+    .mobile-drawer .nav-link-3d{ padding:.8rem 1rem; font-size:1.05rem; border-radius:10px; }
+    .drawer-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:10000; opacity:0; visibility:hidden; transition:opacity .2s ease; }
+    .drawer-backdrop.visible{ opacity:1; visibility:visible; }
+  }
+  </style>
+  
   <!-- Scripts with async/defer for performance -->
-  <script src="https://kit.fontawesome.com/23db9cb3f7.js" crossorigin="anonymous" async></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 </head>
@@ -1231,8 +1243,8 @@
         document.documentElement.style.setProperty('--animation-duration', '0.5s');
         const particles = document.querySelector('.particles-container');
         const shapes = document.querySelector('.geometric-shapes');
-        if (particles) particles.style.display = 'none';
-        if (shapes) shapes.style.display = 'none';
+        /* keep visuals */
+        /* keep visuals */
       }
       
       // iOS specific optimizations
@@ -1307,7 +1319,7 @@
       if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
         document.documentElement.style.setProperty('--animation-duration', '0.1s');
         const heavyElements = document.querySelectorAll('.particles-container, .geometric-shapes, .bg-elements');
-        heavyElements.forEach(el => el.style.display = 'none');
+        /* keep visuals */
       }
     }
     
@@ -1451,14 +1463,7 @@
       lastTouchEnd = now;
     }, false);
     
-    // Service Worker for offline support (if available)
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js').catch(function() {
-          // Service worker registration failed, continue without it
-        });
-      });
-    }
+    // Service Worker registration removed to prevent 404 errors
     
     // Hide loading screen after page loads
     window.addEventListener('load', function() {
