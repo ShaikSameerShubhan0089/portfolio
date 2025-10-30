@@ -56,8 +56,42 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<nav class="sameer-nav" role="navigation" aria-label="Primary Navigation">
+  <div class="nav-inner container">
+    <a href="#home" class="nav-logo">Sameer</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#technologies" class="nav-link">Technologies</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#internships" class="nav-link">Internships & Experience</a></li>
+      <li><a href="#chat" class="nav-link">Chat</a></li>
+      <li><a href="#resume" class="nav-link nav-link-3d">Resume</a></li>
+    </ul>
+  </div>
+  <div class="nav-panel">
+    <ul class="nav-panel-menu">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#technologies" class="nav-link">Technologies</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#internships" class="nav-link">Internships & Experience</a></li>
+      <li><a href="#chat" class="nav-link">Chat</a></li>
+      <li><a href="#resume" class="nav-link nav-link-3d">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="scroll-progress">
+  <div class="scroll-bar"></div>
+</div>
   <script>
     // Ensure loading screen doesn't get stuck
     window.onload = function() {
@@ -151,7 +185,7 @@
   </script>
 
   <!-- 🌌 3D Hero Section -->
-  <section class="hero-3d" data-aos="zoom-in">
+  <section id="home" class="hero-3d" data-aos="zoom-in">
     <div class="hero-content">
       <div class="hero-text">
         <h1 class="hero-title">
@@ -599,7 +633,7 @@
   </section>
 
   <!-- Skills/Technologies -->
-  <section id="skills" class="section-3d skills-3d" data-aos="fade-up">
+  <section id="technologies" class="section-3d skills-3d" data-aos="fade-up">
     <div class="skills-3d-visual">
       <div class="skills-3d-scene">
         <div class="floating-tech">
@@ -1681,6 +1715,46 @@
     setTimeout(hideLoadingScreen, 5000);
   }); // Close DOMContentLoaded
   </script>
+<script>
+const toggle = document.querySelector('.nav-toggle');
+const panel = document.querySelector('.nav-panel');
+const progressBar = document.querySelector('.scroll-bar');
+const links = document.querySelectorAll('.nav-link');
+
+toggle.addEventListener('click', () => {
+  const open = toggle.classList.toggle('open');
+  panel.classList.toggle('open', open);
+  toggle.setAttribute('aria-expanded', open);
+  document.body.classList.toggle('no-scroll', open);
+});
+
+links.forEach(link => link.addEventListener('click', () => {
+  toggle.classList.remove('open');
+  panel.classList.remove('open');
+  document.body.classList.remove('no-scroll');
+}));
+
+document.documentElement.style.scrollBehavior = 'smooth';
+const sections = [...links].map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+
+function highlightActive() {
+  const scrollPos = window.scrollY + 200;
+  sections.forEach((section, i) => {
+    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+      links.forEach(l => l.classList.remove('active'));
+      links[i].classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll', highlightActive);
+
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (scrollTop / height) * 100;
+  progressBar.style.width = scrolled + "%";
+});
+</script>
 </body>
 </html>
 </body>
