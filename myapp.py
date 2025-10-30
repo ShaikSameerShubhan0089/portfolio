@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from dotenv import load_dotenv
 import os
 import smtplib
@@ -125,6 +125,19 @@ AI & Data Science Developer
     except Exception as e:
         return f"<h3>❌ Failed to send resume: {str(e)}</h3>"
 
+
+# === Favicon Routes ===
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory('static/images', 'favicon.ico')
+
+@app.route('/static/images/favicon-32x32.png')
+def favicon32():
+    return send_from_directory('static/images', 'favicon-32x32.png')
+
+@app.route('/static/images/favicon-16x16.png')
+def favicon16():
+    return send_from_directory('static/images', 'favicon-16x16.png')
 
 # === Start Server ===
 if __name__ == "__main__":
