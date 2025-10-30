@@ -37,20 +37,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/mobile-nav.css') }}">
+  
+  <!-- Enhanced Navigation Styles -->
   <style>
-  @media (max-width: 768px){
-    .mobile-drawer{
-      position:fixed; top:0; left:0; height:100vh; width:var(--mobile-drawer-width);
-      background: linear-gradient(180deg, rgba(10,10,10,0.98), rgba(16,16,30,0.95));
-      transform: translateX(-110%); transition: transform 350ms cubic-bezier(.2,.9,.25,1);
-      z-index:10001; padding:1.25rem; display:flex; flex-direction:column; gap:.75rem; overflow-y:auto; -webkit-overflow-scrolling:touch;
+    :root {
+      --nav-height: 80px;
+      --mobile-menu-bg: rgba(10,10,10,0.98);
     }
-    .mobile-drawer.open{ transform: translateX(0%); }
-    .mobile-drawer .nav-menu-3d{ display:flex; flex-direction:column; gap:.75rem; margin-top:.5rem; }
-    .mobile-drawer .nav-link-3d{ padding:.8rem 1rem; font-size:1.05rem; border-radius:10px; }
-    .drawer-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:10000; opacity:0; visibility:hidden; transition:opacity .2s ease; }
-    .drawer-backdrop.visible{ opacity:1; visibility:visible; }
-  }
+    
+    @media (max-width: 768px) {
+      .nav-menu-3d {
+        top: var(--nav-height) !important;
+        height: calc(100vh - var(--nav-height)) !important;
+      }
+    }
   </style>
   
   <!-- Scripts with async/defer for performance -->
@@ -59,6 +60,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
 </head>
 <body>
+  <script>
+    // Ensure loading screen doesn't get stuck
+    window.onload = function() {
+      document.querySelector('.loading-overlay').classList.add('hidden');
+      setTimeout(function() {
+        document.querySelector('.loading-overlay').style.display = 'none';
+      }, 500);
+    };
+    // Failsafe: Force hide loading screen after 5 seconds
+    setTimeout(function() {
+      var loader = document.querySelector('.loading-overlay');
+      if (loader) {
+        loader.classList.add('hidden');
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 500);
+      }
+    }, 5000);
+  </script>
+  
   <!-- Loading Screen -->
   <div class="loading-overlay">
     <div class="loading-container">
@@ -140,22 +161,186 @@
         <span class="logo-letter">r</span>
       </h1>
     </div>
-    <ul class="nav-menu-3d">
-      <li><a href="#about" class="nav-link-3d">About</a></li>
-      <li><a href="#projects" class="nav-link-3d">Projects</a></li>
-      <li><a href="#certifications" class="nav-link-3d">Certifications</a></li>
-      <li><a href="#skills" class="nav-link-3d">Technologies</a></li>
-      <li><a href="#internships" class="nav-link-3d">Internships</a></li>
-      <li><a href="#chat" class="nav-link-3d">Chat</a></li>
-      <li><a href="#contact" class="nav-link-3d">Contact</a></li>
-      <li><a href="#resume" class="nav-link-3d">Resume</a></li>
+    <ul class="nav-menu-3d" id="navMenu">
+      <li><a href="#about" class="nav-link-3d" data-section="about">About</a></li>
+      <li><a href="#projects" class="nav-link-3d" data-section="projects">Projects</a></li>
+      <li><a href="#certifications" class="nav-link-3d" data-section="certifications">Certifications</a></li>
+      <li><a href="#skills" class="nav-link-3d" data-section="skills">Technologies</a></li>
+      <li><a href="#internships" class="nav-link-3d" data-section="internships">Internships</a></li>
+      <li><a href="#chat" class="nav-link-3d" data-section="chat">Chat</a></li>
+      <li><a href="#contact" class="nav-link-3d" data-section="contact">Contact</a></li>
+      <li><a href="#resume" class="nav-link-3d" data-section="resume">Resume</a></li>
     </ul>
-    <div class="nav-toggle">
+    <div class="nav-toggle" id="navToggle">
       <span></span>
       <span></span>
       <span></span>
     </div>
   </nav>
+
+  <!-- Navigation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.getElementById('navToggle');
+      const navMenu = document.getElementById('navMenu');
+      const navLinks = document.querySelectorAll('.nav-link-3d');
+      const body = document.body;
+      let isMenuTransitioning = false;
+
+      function scrollToSection(targetId) {
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          // First close mobile menu if open
+          if (window.innerWidth <= 768) {
+            closeMenu();
+          }
+          
+          // Calculate position and scroll after menu closes
+          setTimeout(() => {
+            const navbar = document.querySelector('.navbar-3d');
+            const navbarHeight = navbar ? navbar.offsetHeight : 0;
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navbarHeight - 20;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+
+            // Update active state
+            updateActiveLink(targetId);
+          }, window.innerWidth <= 768 ? 300 : 0);
+        }
+      }
+
+      function updateActiveLink(targetId) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === targetId);
+        });
+      }
+
+      function toggleMenu(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        
+        if (isMenuTransitioning) return;
+        isMenuTransitioning = true;
+        
+        navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        body.classList.toggle('nav-open');
+        
+        // Handle transition end
+        navMenu.addEventListener('transitionend', function handler() {
+          isMenuTransitioning = false;
+          navMenu.removeEventListener('transitionend', handler);
+        });
+      }
+
+      function closeMenu() {
+        if (navMenu.classList.contains('active')) {
+          toggleMenu();
+        }
+      }
+
+      // Mobile menu toggle
+      if (navToggle) {
+        navToggle.addEventListener('click', toggleMenu);
+        
+        // Close menu on resize to desktop
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 768) {
+            closeMenu();
+          }
+        });
+      }
+
+      // Handle navigation link clicks
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          scrollToSection(targetId);
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768 && 
+            navMenu.classList.contains('active') && 
+            !navToggle.contains(e.target) && 
+            !navMenu.contains(e.target)) {
+          closeMenu();
+        }
+      });
+      
+      // Handle touch events for iOS
+      if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+        document.addEventListener('touchstart', function(e) {
+          if (navMenu.classList.contains('active') && 
+              !navToggle.contains(e.target) && 
+              !navMenu.contains(e.target)) {
+            e.preventDefault();
+            closeMenu();
+          }
+        });
+      }
+
+      // Update active section on scroll
+      let ticking = false;
+      const scrollThreshold = 100;
+      
+      function updateActiveSection() {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrollPosition = window.scrollY + scrollThreshold;
+            const viewportHeight = window.innerHeight;
+            
+            // Find the current section
+            navLinks.forEach(link => {
+              const targetId = link.getAttribute('href');
+              const section = document.querySelector(targetId);
+              
+              if (section) {
+                const rect = section.getBoundingClientRect();
+                const sectionTop = rect.top + window.pageYOffset;
+                const sectionBottom = sectionTop + rect.height;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                  updateActiveLink(targetId);
+                }
+              }
+            });
+            
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      
+      window.addEventListener('scroll', updateActiveSection);
+      window.addEventListener('resize', updateActiveSection);
+    }
+
+    // Handle iOS Safari specific issues
+    function isIOS() {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    }
+
+    // Initialize navigation when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeNavigation);
+    } else {
+      initializeNavigation();
+    }
+
+    // Add iOS specific class if needed
+    if (isIOS()) {
+      document.body.classList.add('ios-device');
+    }
+  </script>
 
   <!-- 🌌 3D Hero Section -->
   <section class="hero-3d" data-aos="zoom-in">
@@ -1210,12 +1395,118 @@
     <i class="fab fa-whatsapp"></i>
   </a>
 
-  <div id="chat-float-btn" onclick="document.getElementById('chat').scrollIntoView({behavior: 'smooth'})">
+  <div id="chat-float-btn" class="chat-float-btn">
+    <i class="fas fa-comments" style="font-size: 24px; color: #0a0a0a;"></i>
     <div class="chat-tooltip">Hi! I'm Sameer's Assistant<br>Ask me anything!</div>
   </div>
 
   <!-- Particle Explosion Container -->
   <div id="particle-explosion"></div>
+
+  <script>
+    // Enhanced chat float button and mobile navigation functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const chatButton = document.getElementById('chat-float-btn');
+      const chatSection = document.getElementById('chat');
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu-3d');
+      const body = document.body;
+      
+      // Handle mobile menu toggle
+      if (navToggle && navMenu) {
+        let isTransitioning = false;
+        
+        navToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          if (isTransitioning) return;
+          isTransitioning = true;
+          
+          const isOpen = this.classList.contains('active');
+          
+          // Toggle classes
+          this.classList.toggle('active');
+          navMenu.classList.toggle('active');
+          body.classList.toggle('nav-open');
+          
+          // Handle menu animation complete
+          navMenu.addEventListener('transitionend', function handler() {
+            isTransitioning = false;
+            navMenu.removeEventListener('transitionend', handler);
+          });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (navMenu.classList.contains('active') && 
+              !navToggle.contains(e.target) && 
+              !navMenu.contains(e.target)) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+        });
+        
+        // Close menu when resizing to desktop
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+        });
+      }
+      
+      // Handle chat button click
+      if (chatButton && chatSection) {
+        chatButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Close mobile menu if open
+          if (navToggle && navMenu) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+
+          // Calculate offset position
+          const headerOffset = 80;
+          const elementPosition = chatSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          // Smooth scroll to chat section
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+
+          // Focus on chat input after scrolling
+          setTimeout(() => {
+            const chatInput = document.getElementById('userInput');
+            if (chatInput) {
+              chatInput.focus();
+            }
+          }, 1000);
+        });
+      }
+      
+      // Fix iOS viewport height
+      function setVHProperty() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      
+      // Set initial viewport height
+      setVHProperty();
+      
+      // Update viewport height on resize and orientation change
+      window.addEventListener('resize', setVHProperty);
+      window.addEventListener('orientationchange', () => {
+        setTimeout(setVHProperty, 100);
+      });
+    });
+  </script>
   
   <!-- Cursor Particle Trail -->
   <div id="cursor-particles"></div>
@@ -1227,9 +1518,8 @@
   <script>
     // === COMPREHENSIVE DEVICE & BROWSER OPTIMIZATION === //
     
-    // Performance optimization based on device capabilities
-    function initializeOptimizedExperience() {
-      // Detect device capabilities
+    document.addEventListener('DOMContentLoaded', function() {
+      // Performance optimization based on device capabilities
       const isLowEndDevice = navigator.hardwareConcurrency <= 2 || 
                             navigator.deviceMemory <= 2 ||
                             /Android.*Chrome\/[.0-9]*\s/.test(navigator.userAgent);
@@ -1238,12 +1528,80 @@
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
       const isAndroid = /Android/i.test(navigator.userAgent);
       
+      // Initialize mobile navigation
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu-3d');
+      const body = document.body;
+      
+      // Function to handle smooth scrolling
+      function smoothScrollToSection(targetId) {
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          // Close mobile menu first
+          if (navToggle && navMenu) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+
+          // Wait for menu to close, then scroll
+          setTimeout(() => {
+            const headerOffset = 80;
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }, 300);
+        }
+      }
+
+      // Handle mobile menu toggle
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          navToggle.classList.toggle('active');
+          navMenu.classList.toggle('active');
+          body.classList.toggle('nav-open');
+        });
+
+        // Handle navigation links
+        document.querySelectorAll('.nav-link-3d').forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            smoothScrollToSection(targetId);
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+        });
+      }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+        });
+      }
+      
       // Optimize for low-end devices
       if (isLowEndDevice) {
         document.documentElement.style.setProperty('--animation-duration', '0.5s');
         const particles = document.querySelector('.particles-container');
         const shapes = document.querySelector('.geometric-shapes');
-        /* keep visuals */
         /* keep visuals */
       }
       
@@ -1465,18 +1823,29 @@
     
     // Service Worker registration removed to prevent 404 errors
     
-    // Hide loading screen after page loads
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        const loadingOverlay = document.querySelector('.loading-overlay');
-        if (loadingOverlay) {
-          loadingOverlay.classList.add('hidden');
-          setTimeout(function() {
-            loadingOverlay.style.display = 'none';
-          }, 500);
-        }
-      }, 1000);
+    // Hide loading screen
+    function hideLoadingScreen() {
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      if (loadingOverlay) {
+        loadingOverlay.classList.add('hidden');
+        setTimeout(function() {
+          loadingOverlay.style.display = 'none';
+        }, 500);
+      }
+    }
+
+    // Hide loading screen after DOM content is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(hideLoadingScreen, 1000);
     });
+
+    // Fallback to hide loading screen after window load
+    window.addEventListener('load', function() {
+      hideLoadingScreen();
+    });
+
+    // Force hide loading screen after 5 seconds (failsafe)
+    setTimeout(hideLoadingScreen, 5000);
   </script>
 </body>
 </html>

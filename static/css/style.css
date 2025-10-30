@@ -2490,7 +2490,7 @@ body.mobile-device textarea {
 
 /* Chat Input Area */
 .chat-input-container {
-  padding: 1rem;
+  padding: 1rem !important;
   border-top: 1px solid rgba(0, 255, 255, 0.2);
   background: rgba(0, 255, 255, 0.05);
   border-radius: 0 0 15px 15px;
@@ -3340,7 +3340,7 @@ body.mobile-device textarea {
   position: relative;
   overflow: visible;
   margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 1rem !important;
 }
 
 /* Enhanced Python 3D Scene */
@@ -5345,7 +5345,7 @@ body.mobile-device textarea {
   height: 300px;
   background: #111;
   border-radius: 12px;
-  padding: 1rem;
+  padding: 1rem !important;
   overflow-y: auto;
   margin-bottom: 1rem;
   color: #0ef;
@@ -5362,18 +5362,17 @@ body.mobile-device textarea {
 
 /* === Floating Chat Icon === */
 #chat-float-btn {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background: url('/static/images/chatbot-icon.png') no-repeat center center;
-  background-size: contain;
-  border-radius: 12px;
-  box-shadow: 0 0 25px #0ef, 0 0 50px #0ef6;
-  z-index: 9999;
-  transition:
-    top 0.8s ease, left 0.8s ease,
-    transform 0.4s ease, opacity 0.4s ease;
-  cursor: pointer;
+  position: fixed !important;
+  bottom: 2rem !important;
+  left: 2rem !important;
+  width: 80px !important;
+  height: 80px !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4) !important;
+  z-index: 1000 !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
 }
 #chat-float-btn.talking {
   animation: pulse 1.5s ease-in-out infinite;
@@ -5416,7 +5415,7 @@ body.mobile-device textarea {
 .contact-card {
   background: rgba(0, 0, 0, 0.7);
   border: 1px solid #0ef;
-  padding: 1rem;
+  padding: 1rem !important;
   border-radius: 15px;
   width: 240px;
   text-align: center;
@@ -5867,7 +5866,7 @@ body.mobile-device textarea {
   position: relative;
   overflow: visible;
   margin: 0;
-  padding: 1rem;
+  padding: 1rem !important;
 }
 
 .skill-content {
@@ -6041,7 +6040,7 @@ body.mobile-device textarea {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 15px;
-  padding: 1rem;
+  padding: 1rem !important;
   overflow-y: auto;
   margin-bottom: 1rem;
   color: var(--primary-cyan);
@@ -6051,7 +6050,7 @@ body.mobile-device textarea {
 
 #userInput {
   width: 70%;
-  padding: 1rem;
+  padding: 1rem !important;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 10px;
@@ -6117,7 +6116,7 @@ body.mobile-device textarea {
 
 .form-input-3d {
   width: 100%;
-  padding: 1rem;
+  padding: 1rem !important;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: 10px;
@@ -6209,25 +6208,25 @@ body.mobile-device textarea {
 }
 
 #chat-float-btn {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
-  z-index: 999;
-  transition: all 0.3s ease;
-  animation: gentleBounce 3s ease-in-out infinite;
-  border: 3px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
+  position: fixed !important;
+  bottom: 2rem !important;
+  left: 2rem !important;
+  width: 80px !important;
+  height: 80px !important;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.8rem !important;
+  color: white !important;
+  cursor: pointer !important;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4) !important;
+  z-index: 1000 !important;
+  transition: all 0.3s ease !important;
+  animation: gentleBounce 3s ease-in-out infinite !important;
+  border: 3px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
 #chat-float-btn::before {
@@ -6320,6 +6319,27 @@ body.mobile-device textarea {
 }
 
 /* === Responsive Design === */
+
+/* Chat demo buttons alignment */
+#demo-questions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.5rem !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+#demo-questions button {
+  display: inline-block !important;
+  padding: 0.6rem 0.9rem !important;
+  min-width: 110px !important;
+  border-radius: 8px !important;
+}
+
+@media (max-width: 768px) {
+  #demo-questions button {
+    flex: 1 1 100% !important;
+  }
+}
 
 
 /* === Enhanced Projects Section === */
@@ -6684,14 +6704,14 @@ body.mobile-device textarea {
   background: var(--glass-bg);
   border: 1px solid var(--primary-cyan);
   border-radius: 10px;
-  padding: 1rem;
+  padding: 1rem !important;
   color: var(--primary-cyan);
   margin-bottom: 1rem;
 }
 
 .message {
   margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 1rem !important;
   border-radius: 10px;
   position: relative;
 }
@@ -6720,7 +6740,7 @@ body.mobile-device textarea {
   gap: 1rem;
   align-items: center;
   flex-wrap: wrap;
-  padding: 1rem;
+  padding: 1rem !important;
   background: var(--glass-bg);
   border-radius: 15px;
   border: 1px solid var(--glass-border);
@@ -6736,7 +6756,7 @@ body.mobile-device textarea {
   background: var(--gradient-secondary);
   border: 2px solid var(--primary-cyan);
   border-radius: 12px;
-  padding: 1rem;
+  padding: 1rem !important;
   color: var(--text-primary);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -6867,7 +6887,7 @@ body.mobile-device textarea {
 
 /* === Typing Indicator Animation === */
 .typing-indicator {
-  padding: 1rem;
+  padding: 1rem !important;
   background: var(--glass-bg);
   border-radius: 10px;
   margin: 0.5rem 0;
@@ -7030,7 +7050,7 @@ body.mobile-device textarea {
   .section-3d {
     page-break-inside: avoid;
     margin: 1rem 0;
-    padding: 1rem;
+    padding: 1rem !important;
   }
   
   .project-card-3d,
@@ -7778,85 +7798,313 @@ body.mobile-device textarea {
 }
 
 /* Mobile responsiveness for 3D visuals */
+/* ===========================================================
+   🌐 MOBILE OPTIMIZATION — RESPONSIVE DESIGN ENHANCEMENTS
+   =========================================================== */
 
+/* === Tablet and Medium Devices (max-width: 992px) === */
+@media (max-width: 992px) {
+  .navbar-3d {
+    padding: 1rem 1.5rem !important;
+  }
 
-/* Hide on very small screens */
+  .hero-content {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    gap: 3rem;
+  }
 
+  .hero-visual {
+    order: -1 !important;
+  }
 
-/* --- Responsive additions appended by assistant --- */
+  .section-3d {
+    padding: 3rem 1.5rem !important;
+  }
 
-/* ============================
-   MOBILE / TABLET RESPONSIVE ADDITIONS (ADDITIVE)
-   Appended by assistant — keeps desktop intact
-   ============================ */
+  .projects-grid,
+  .skills-grid,
+  .certifications-grid,
+  .contact-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+  }
 
-/* Basic variables for mobile tuning */
-:root{
-  --mobile-drawer-width: min(320px, 86%);
-  --mobile-gap: 1rem;
-}
+  .contact-resume-container {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
 
-/* Tablet adjustments */
-@media (max-width: 1024px){
-  .hero-content{ gap:1.25rem; padding:3rem; }
-  .hero-title{ font-size:2.2rem; }
-  .projects-grid, .certifications-grid, .skills-grid{
-    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-    gap:1rem;
+  .resume-form-container {
+    padding: 1.5rem !important;
+  }
+
+  .ai-brain-container {
+    width: 220px !important;
+    height: 220px !important;
+  }
+
+  .project-card-3d,
+  .cert-card-3d,
+  .skill-card-3d {
+    min-height: auto !important;
+    padding: 1rem !important;
   }
 }
 
-/* Mobile: stack, simplify, reduce glow/intensity */
-@media (max-width: 768px){
-  .hero-content{ grid-template-columns:1fr; gap:1rem; padding:2rem; }
-  .about-container, .contact-resume-container, .enhanced-chat-container { display:block; width:100%; padding:1rem; text-align:center; }
-  .project-card-3d, .cert-card-3d, .contact-card-3d { width: calc(100% - 2rem); margin: 0 auto 1rem; min-height:160px; }
-  .section-title-3d{ font-size:1.4rem; margin-bottom:.5rem; text-shadow:0 0 8px rgba(0,255,255,0.12); }
-  .project-desc, .about-desc-3d, .about-extra-3d{ font-size:.95rem; line-height:1.45; }
-  .project-3d-animation-area, .skill-3d-animation-area, .chat-3d-animation-area, .resume-3d-animation-area{ min-height:80px; padding:.6rem; }
-  .nav-menu-3d{ display:none; }
-  .nav-toggle{ display:flex; z-index:10002; cursor:pointer; }
-  .navbar-3d{ padding:.75rem 1rem; }
-  #bg-canvas{ filter: blur(1px); opacity:.98; }
-  .scroll-indicator{ display:none; }
-}
-
-/* Small phones: drawer, touch improvements */
-@media (max-width: 480px){
-  .hero-title{ font-size:1.6rem; }
-  .logo-3d{ font-size:1.25rem; }
-  .project-card-3d, .cert-card-3d, .contact-card-3d{ padding:1rem; border-radius:12px; min-height:140px; }
-  .tech-tag{ padding:.25rem .6rem; font-size:.75rem; }
-
-  /* Hamburger styling */
-  .nav-toggle{ width:36px; height:28px; flex-direction:column; gap:4px; justify-content:center; align-items:center; }
-  .nav-toggle span{ display:block; width:100%; height:3px; border-radius:3px; background:linear-gradient(90deg,var(--primary-cyan),var(--primary-blue)); transition:transform .25s ease,opacity .25s ease; }
-
-  /* Drawer */
-  .mobile-drawer{
-    position:fixed; top:0; left:0; height:100vh; width:var(--mobile-drawer-width);
-    background: linear-gradient(180deg, rgba(10,10,10,0.98), rgba(16,16,30,0.95));
-    transform: translateX(-110%); transition: transform 350ms cubic-bezier(.2,.9,.25,1);
-    z-index:10001; padding:1.25rem; display:flex; flex-direction:column; gap:.75rem; overflow-y:auto; -webkit-overflow-scrolling:touch;
+/* === Mobile Devices (max-width: 768px) === */
+@media (max-width: 768px) {
+  /* Navbar adjustments */
+  .navbar-3d {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem !important;
+    z-index: 10000 !important;
   }
-  .mobile-drawer.open{ transform: translateX(0%); }
-  .mobile-drawer .nav-menu-3d{ display:flex; flex-direction:column; gap:.75rem; margin-top:.5rem; }
-  .mobile-drawer .nav-link-3d{ padding:.8rem 1rem; font-size:1.05rem; border-radius:10px; }
 
-  /* Backdrop */
-  .drawer-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.45); z-index:10000; opacity:0; visibility:hidden; transition:opacity .2s ease; }
-  .drawer-backdrop.visible{ opacity:1; visibility:visible; }
+  .nav-toggle {
+    display: flex !important;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    position: relative !important;
+    z-index: 10002 !important;
+    pointer-events: auto !important;
+  }
 
-  /* Reduce hover transforms on touch */
-  .section-3d:hover{ transform:none; }
+  .nav-menu-3d {
+    display: none !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-top: 1px solid rgba(0, 255, 255, 0.2) !important;
+    padding: 1rem 0 !important;
+    margin-top: 1rem !important;
+    position: fixed !important;
+    top: 64px !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 10001 !important;
+  }
 
-  /* Improve touch targets */
-  .nav-link-3d, .project-link, .resume-btn, .chat-btn{ touch-action:manipulation; -webkit-tap-highlight-color:rgba(0,0,0,0); padding: .6rem 1rem; }
+  .nav-menu-3d.active {
+    display: flex !important;
+  }
 
-  body.nav-open{ overflow:hidden; position:fixed; width:100%; height:100%; }
+  .nav-link-3d {
+    padding: 0.8rem 1rem !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* Hero section */
+  .hero-content {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  /* About section */
+  .about-container {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    align-items: start !important;
+  }
+  .about-3d-visual {
+    position: static !important;
+    width: 100% !important;
+    height: 120px !important;
+    margin-bottom: 1rem !important;
+  }
+  .about-content {
+    padding: 1rem !important;
+    text-align: center !important;
+  }
+  .profile-image-container {
+    width: 180px !important;
+    height: 180px !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-text {
+    text-align: center;
+  }
+
+  .name-letter {
+    font-size: 2.5rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem !important;
+  }
+
+  .tag-3d {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Section styling */
+  .section-3d {
+    padding: 2rem 1rem !important;
+    width: 95% !important;
+  }
+
+  .project-card-3d,
+  .skill-card-3d,
+  .cert-card-3d,
+  .contact-card-3d {
+    padding: 1rem !important;
+  }
+
+  .project-title,
+  .skill-name,
+  .cert-title {
+    font-size: 1.2rem !important;
+  }
+
+  .project-desc {
+    font-size: 0.9rem !important;
+  }
+
+  /* Contact and Resume sections */
+  .contact-resume-container {
+    grid-template-columns: 1fr !important;
+    padding: 1.5rem !important;
+  }
+
+  .connect-title {
+    font-size: 2rem !important;
+  }
+
+  .connect-description {
+    font-size: 1rem !important;
+  }
+
+  .social-links {
+    flex-wrap: wrap !important;
+    gap: 0.8rem !important;
+  }
+
+  .social-link {
+    width: 45px !important;
+    height: 45px !important;
+    font-size: 1rem !important;
+  }
+
+  /* Chat & Resume layout */
+  .enhanced-chat-container,
+  .contact-resume-container {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .chat-3d-visual {
+    position: static !important;
+    width: 100% !important;
+    height: 100px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .chat-interface {
+    width: 100% !important;
+  }
+
+  #chatbox {
+    height: 220px !important;
+  }
+
+  .chat-controls {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.6rem !important;
+    justify-content: stretch !important;
+  }
+  .chat-btn {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Footer, grids, etc. */
+  .projects-grid,
+  .skills-grid,
+  .certifications-grid,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Reduce 3D object animation intensity for better mobile performance */
+  .ai-brain-container,
+  .section-3d {
+    animation: none !important;
+    transform: none !important;
+  }
 }
 
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce){
-  .section-3d, .loading-cube, #bg-canvas, .bg-wave, .floating-*{ animation:none !important; transition:none !important; }
+/* === Small Mobile Devices (max-width: 480px) === */
+@media (max-width: 480px) {
+  body {
+    font-size: 0.9rem !important;
+  }
+
+  .navbar-3d {
+    padding: 0.8rem !important;
+  }
+
+  .hero-greeting {
+    font-size: 1.2rem !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem !important;
+  }
+
+  .project-card-3d,
+  .cert-card-3d {
+    padding: 0.8rem !important;
+  }
+
+  .contact-card-3d {
+    padding: 1rem !important;
+  }
+
+  .social-link {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .connect-title {
+    font-size: 1.6rem !important;
+  }
+
+  .section-title-3d {
+    font-size: 1.4rem !important;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem !important;
+  }
+
+  /* Optimize spacing */
+  .section-3d {
+    margin: 1.5rem auto !important;
+    padding: 1.5rem 1rem !important;
+  }
+
+  /* Prevent overflow of wide animations */
+  canvas,
+  #bg-canvas {
+    width: 100%;
+    height: 100%;
+  }
 }
+
+/* === Optional: Hide heavy animations on low-power devices === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
