@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Debug - Sameer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            padding: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .debug-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            background: rgba(0, 255, 255, 0.1);
+        }
+        
+        .status {
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin: 8px 0;
+            font-weight: bold;
+        }
+        
+        .pass { background: #00ff00; color: #000; }
+        .fail { background: #ff0000; color: #fff; }
+        .info { background: #00ffff; color: #000; }
+        .warning { background: #ffaa00; color: #000; }
+        
+        button {
+            background: #00ffff;
+            color: #000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            min-height: 44px;
+            min-width: 120px;
+        }
+        
+        button:active {
+            background: #00cccc;
+        }
+        
+        .test-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #00ffff;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        
+        .test-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            transition: left 0.3s ease;
+            z-index: 999;
+        }
+        
+        .test-menu.active {
+            left: 0;
+        }
+        
+        .test-menu a {
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            background: rgba(0, 255, 255, 0.1);
+        }
+        
+        .content {
+            margin-top: 80px;
+            padding-bottom: 100px;
+        }
+        
+        .scroll-test {
+            height: 200px;
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+            margin: 20px 0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+    <!-- Test Navigation -->
+    <div class="test-nav">
+        <div style="color: #00ffff; font-weight: bold;">Mobile Debug</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    
+    <!-- Test Menu -->
+    <div class="test-menu" id="testMenu">
+        <a href="/" onclick="closeMenu()">← Back to Portfolio</a>
+        <a href="#device" onclick="closeMenu()">Device Info</a>
+        <a href="#scroll" onclick="closeMenu()">Scroll Test</a>
+        <a href="#touch" onclick="closeMenu()">Touch Test</a>
+        <a href="#nav" onclick="closeMenu()">Navigation Test</a>
+    </div>
+    
+    <div class="content">
+        <h1>📱 Mobile Debug & Test Suite</h1>
+        
+        <div class="debug-section" id="device">
+            <h2>🔍 Device Detection</h2>
+            <div id="device-info">Loading...</div>
+            <button onclick="refreshDeviceInfo()">Refresh Device Info</button>
+        </div>
+        
+        <div class="debug-section" id="nav">
+            <h2>🍔 Navigation Test</h2>
+            <div id="nav-info">
+                <div class="info">Test the hamburger menu above ↑</div>
+                <div class="info">It should slide in from the left</div>
+                <div class="info">Click outside or on links to close</div>
+            </div>
+            <button onclick="testNavigation()">Test Navigation Elements</button>
+        </div>
+        
+        <div class="debug-section" id="scroll">
+            <h2>📜 Scroll Test</h2>
+            <div class="info">This page should scroll smoothly. Test by scrolling up and down.</div>
+            
+            <div class="scroll-test">Scroll Test Block 1</div>
+            <div class="scroll-test">Scroll Test Block 2</div>
+            <div class="scroll-test">Scroll Test Block 3</div>
+            <div class="scroll-test">Scroll Test Block 4</div>
+            <div class="scroll-test">Scroll Test Block 5</div>
+            
+            <button onclick="testScrolling()">Test Scroll Position</button>
+            <div id="scroll-info"></div>
+        </div>
+        
+        <div class="debug-section" id="touch">
+            <h2>👆 Touch Test</h2>
+            <div id="touch-info">
+                <div class="info">Touch anywhere on this section to test touch events</div>
+            </div>
+            <button onclick="enableTouchTest()">Enable Touch Testing</button>
+        </div>
+        
+        <div class="debug-section">
+            <h2>🌐 Browser Console</h2>
+            <div class="info">Open browser console (F12) to see detailed debug information</div>
+            <button onclick="logDebugInfo()">Log Debug Info to Console</button>
+        </div>
+        
+        <div class="debug-section">
+            <h2>🔧 Quick Fixes</h2>
+            <button onclick="fixScrolling()">Fix Scrolling Issues</button>
+            <button onclick="fixNavigation()">Fix Navigation Issues</button>
+            <button onclick="resetViewport()">Reset Viewport</button>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let touchTestEnabled = false;
+        
+        // Initialize debug page
+        function initDebug() {
+            console.log('🔧 Mobile Debug Page Initialized');
+            refreshDeviceInfo();
+            testNavigation();
+            
+            // Set viewport height
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        // Toggle hamburger menu
+        function toggleMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.getElementById('testMenu');
+            
+            hamburger.classList.toggle('active');
+            menu.classList.toggle('active');
+            
+            console.log('Menu toggled:', {
+                hamburgerActive: hamburger.classList.contains('active'),
+                menuActive: menu.classList.contains('active')
+            });
+        }
+        
+        // Close menu
+        function closeMenu() {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.getElementById('testMenu');
+            
+            hamburger.classList.remove('active');
+            menu.classList.remove('active');
+        }
+        
+        // Device detection
+        function refreshDeviceInfo() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            const devicePixelRatio = window.devicePixelRatio || 1;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isAndroid = /Android/i.test(navigator.userAgent);
+            
+            const info = `
+                <div class="status ${isMobile ? 'pass' : 'info'}">Mobile Device: ${isMobile ? 'Yes' : 'No'}</div>
+                <div class="status ${isTouch ? 'pass' : 'fail'}">Touch Support: ${isTouch ? 'Yes' : 'No'}</div>
+                <div class="status ${isIOS ? 'info' : 'pass'}">iOS Device: ${isIOS ? 'Yes' : 'No'}</div>
+                <div class="status ${isAndroid ? 'info' : 'pass'}">Android Device: ${isAndroid ? 'Yes' : 'No'}</div>
+                <div class="status info">Device Pixel Ratio: ${devicePixelRatio}</div>
+                <div class="status info">Viewport: ${window.innerWidth}x${window.innerHeight}</div>
+                <div class="status info">Screen: ${screen.width}x${screen.height}</div>
+                <div class="status info">User Agent: ${navigator.userAgent.substring(0, 100)}...</div>
+            `;
+            
+            document.getElementById('device-info').innerHTML = info;
+        }
+        
+        // Test navigation elements
+        function testNavigation() {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.getElementById('testMenu');
+            
+            const navInfo = `
+                <div class="status ${hamburger ? 'pass' : 'fail'}">Hamburger Element: ${hamburger ? 'Found' : 'Missing'}</div>
+                <div class="status ${menu ? 'pass' : 'fail'}">Menu Element: ${menu ? 'Found' : 'Missing'}</div>
+                <div class="status info">Menu Position: ${menu ? getComputedStyle(menu).left : 'N/A'}</div>
+                <div class="status info">Menu Transition: ${menu ? getComputedStyle(menu).transition : 'N/A'}</div>
+            `;
+            
+            document.getElementById('nav-info').innerHTML = navInfo;
+        }
+        
+        // Test scrolling
+        function testScrolling() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            
+            const scrollInfo = `
+                <div class="status info">Current Scroll Position: ${scrollTop}px</div>
+                <div class="status info">Total Page Height: ${scrollHeight}px</div>
+                <div class="status info">Viewport Height: ${clientHeight}px</div>
+                <div class="status ${scrollTop > 0 ? 'pass' : 'warning'}">Scrolling: ${scrollTop > 0 ? 'Working' : 'Test by scrolling'}</div>
+            `;
+            
+            document.getElementById('scroll-info').innerHTML = scrollInfo;
+        }
+        
+        // Enable touch testing
+        function enableTouchTest() {
+            if (touchTestEnabled) return;
+            
+            touchTestEnabled = true;
+            const touchSection = document.getElementById('touch');
+            
+            touchSection.addEventListener('touchstart', function(e) {
+                const touch = e.touches[0];
+                const info = `
+                    <div class="status pass">Touch Detected!</div>
+                    <div class="status info">Touch X: ${touch.clientX}</div>
+                    <div class="status info">Touch Y: ${touch.clientY}</div>
+                    <div class="status info">Touches Count: ${e.touches.length}</div>
+                `;
+                document.getElementById('touch-info').innerHTML = info;
+            });
+            
+            document.getElementById('touch-info').innerHTML = '<div class="status info">Touch testing enabled. Touch this section.</div>';
+        }
+        
+        // Log debug info
+        function logDebugInfo() {
+            console.log('🔧 MOBILE DEBUG INFORMATION:');
+            console.log('Device:', {
+                userAgent: navigator.userAgent,
+                isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+                isTouch: 'ontouchstart' in window,
+                viewport: { width: window.innerWidth, height: window.innerHeight },
+                screen: { width: screen.width, height: screen.height },
+                pixelRatio: window.devicePixelRatio
+            });
+            
+            console.log('Navigation Elements:', {
+                hamburger: !!document.querySelector('.hamburger'),
+                menu: !!document.getElementById('testMenu'),
+                menuPosition: document.getElementById('testMenu') ? getComputedStyle(document.getElementById('testMenu')).left : 'N/A'
+            });
+            
+            console.log('Scroll Info:', {
+                scrollTop: window.pageYOffset,
+                scrollHeight: document.documentElement.scrollHeight,
+                clientHeight: document.documentElement.clientHeight
+            });
+        }
+        
+        // Quick fixes
+        function fixScrolling() {
+            document.body.style.overflowY = 'auto';
+            document.body.style.webkitOverflowScrolling = 'touch';
+            document.documentElement.style.overflowY = 'auto';
+            alert('Applied scrolling fixes!');
+        }
+        
+        function fixNavigation() {
+            const menu = document.getElementById('testMenu');
+            if (menu) {
+                menu.style.transition = 'left 0.3s ease';
+                menu.style.zIndex = '999';
+            }
+            alert('Applied navigation fixes!');
+        }
+        
+        function resetViewport() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+            window.scrollTo(0, 0);
+            alert('Viewport reset!');
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', initDebug);
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const hamburger = document.querySelector('.hamburger');
+            const menu = document.getElementById('testMenu');
+            
+            if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
+                closeMenu();
+            }
+        });
+        
+        // Handle orientation changes
+        window.addEventListener('orientationchange', function() {
+            setTimeout(function() {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
+                refreshDeviceInfo();
+            }, 500);
+        });
+        
+        // Handle resize
+        window.addEventListener('resize', function() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        });
+        
+        // Scroll test
+        window.addEventListener('scroll', function() {
+            if (document.getElementById('scroll-info').innerHTML) {
+                testScrolling();
+            }
+        });
+    </script>
+</body>
+</html>
