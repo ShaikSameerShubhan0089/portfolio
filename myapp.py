@@ -28,7 +28,7 @@ def request_resume():
     if not api_key:
         return "<h3>❌ Brevo API key missing. Check your environment variables.</h3>"
 
-    approve_link = f"https://sameer-porfolio.onrender.com/approve_resume?email={email}&name={name}"
+    approve_link = f"https://sameer-portfolio-ta3w.onrender.com/approve_resume?email={email}&name={name}"
     deny_link = f"mailto:{email}?subject=Regarding%20Resume%20Request"
 
     # Email content
