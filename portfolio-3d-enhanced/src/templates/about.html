@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Sameer | 3D Enhanced Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <div class="container" data-aos="fade-up" style="text-align: center;">
+        <h1>About Sameer Shaik</h1>
+        <p>Welcome to my portfolio! I am an AI & Data Science Developer with a passion for creating innovative solutions.</p>
+        <p>In this portfolio, you will find my projects, certifications, and technologies I work with, all enhanced with stunning 3D animations.</p>
+        <div id="about-3d-animation"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/3d-effects.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

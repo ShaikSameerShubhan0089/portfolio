@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sameer Shaik | Portfolio</title>
+  <!-- Favicon -->
+ <link rel="icon" type="image/png" href="static\images\logo.jpeg">
+
+  
+  <!-- === COMPREHENSIVE DEVICE & BROWSER OPTIMIZATION === -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+  <meta name="description" content="Sameer Shaik - AI/ML Engineer & Full Stack Developer. Interactive 3D portfolio showcasing projects in artificial intelligence, machine learning, and web development.">
+  <meta name="keywords" content="AI Engineer, Machine Learning, Full Stack Developer, Python, JavaScript, Portfolio">
+  <meta name="author" content="Sameer Shaik">
+  
+  <!-- Mobile & Touch Device Optimizations -->
+  <meta name="application-name" content="Sameer Portfolio">
+  <meta name="msapplication-TileColor" content="#00ffff">
+  <meta name="theme-color" content="#00ffff">
+  
+  <!-- Cross-Browser Compatibility -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="address=no">
+  
+  <!-- Performance & Caching -->
+  <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+  <meta name="robots" content="index, follow">
+  
+  <!-- Favicon for all devices -->
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
+  
+  <!-- Stylesheets with preload for performance -->
+  <link rel="preload" href="{{ url_for('static', filename='css/style.css') }}" as="style">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  
+  <!-- Enhanced Styles -->
+  <style>
+    :root {
+      --nav-height: 80px;
+      --mobile-menu-bg: rgba(10,10,10,0.98);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-menu-3d {
+        top: var(--nav-height) !important;
+        height: calc(100vh - var(--nav-height)) !important;
+      }
+    }
+  </style>
+  
+  <!-- Scripts with async/defer for performance -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav class="sameer-nav" role="navigation" aria-label="Primary Navigation">
+  <div class="nav-inner container">
+    <a href="#home" class="nav-logo">
+  <img src="static\images\logo.jpeg" alt="Sameer Logo" class="logo-img">
+  <span class="logo-text">Sameer</span>
+</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-menu">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#technologies" class="nav-link">Technologies</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#internships" class="nav-link">Internships & Experience</a></li>
+      <li><a href="#chat" class="nav-link">Chat</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="#resume" class="nav-link">Resume</a></li>
+    </ul>
+  </div>
+  <div class="nav-panel">
+    <ul class="nav-panel-menu">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#technologies" class="nav-link">Technologies</a></li>
+      <li><a href="#certifications" class="nav-link">Certifications</a></li>
+      <li><a href="#internships" class="nav-link">Internships & Experience</a></li>
+      <li><a href="#chat" class="nav-link">Chat</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="#resume" class="nav-link">Resume</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="scroll-progress">
+  <div class="scroll-bar"></div>
+</div>
+  <script>
+    // Ensure loading screen doesn't get stuck
+    window.onload = function() {
+      document.querySelector('.loading-overlay').classList.add('hidden');
+      setTimeout(function() {
+        document.querySelector('.loading-overlay').style.display = 'none';
+      }, 500);
+    };
+    // Failsafe: Force hide loading screen after 5 seconds
+    setTimeout(function() {
+      var loader = document.querySelector('.loading-overlay');
+      if (loader) {
+        loader.classList.add('hidden');
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 500);
+      }
+    }, 5000);
+  </script>
+  
+  <!-- Loading Screen -->
+  <div class="loading-overlay">
+    <div class="loading-container">
+      <div class="loading-cube">
+        <div class="cube-face front">S</div>
+        <div class="cube-face back">A</div>
+        <div class="cube-face right">M</div>
+        <div class="cube-face left">E</div>
+        <div class="cube-face top">E</div>
+        <div class="cube-face bottom">R</div>
+      </div>
+      <div class="loading-text">
+        <span class="loading-letter">L</span>
+        <span class="loading-letter">o</span>
+        <span class="loading-letter">a</span>
+        <span class="loading-letter">d</span>
+        <span class="loading-letter">i</span>
+        <span class="loading-letter">n</span>
+        <span class="loading-letter">g</span>
+        <span class="loading-dots">...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3D Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+  
+  <!-- Animated Background Elements -->
+  <div class="bg-elements">
+    <div class="bg-circle bg-circle-1"></div>
+    <div class="bg-circle bg-circle-2"></div>
+    <div class="bg-circle bg-circle-3"></div>
+    <div class="bg-wave bg-wave-1"></div>
+    <div class="bg-wave bg-wave-2"></div>
+  </div>
+  
+  <!-- Floating Particles -->
+  <div class="particles-container">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <!-- Floating Geometric Shapes -->
+  <div class="geometric-shapes">
+    <div class="shape triangle"></div>
+    <div class="shape circle"></div>
+    <div class="shape square"></div>
+    <div class="shape hexagon"></div>
+    <div class="shape diamond"></div>
+  </div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress">
+    <div class="progress-bar"></div>
+  </div>
+
+
+  </script>
+
+  <!-- 🌌 3D Hero Section -->
+  <section id="home" class="hero-3d" data-aos="zoom-in">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="hero-greeting">Hello, I'm</span>
+          <span class="hero-name">
+            <span class="name-letter">S</span>
+            <span class="name-letter">a</span>
+            <span class="name-letter">m</span>
+            <span class="name-letter">e</span>
+            <span class="name-letter">e</span>
+            <span class="name-letter">r</span>
+            <span class="name-space"></span>
+            <span class="name-letter">S</span>
+            <span class="name-letter">h</span>
+            <span class="name-letter">a</span>
+            <span class="name-letter">i</span>
+            <span class="name-letter">k</span>
+          </span>
+        </h1>
+        <p class="hero-subtitle">
+          <span class="typing-text">AI & Data Science Developer</span>
+          <span class="cursor">|</span>
+        </p>
+        <div class="hero-tags">
+          <span class="tag-3d">Flask Expert</span>
+          <span class="tag-3d">Streamlit Enthusiast</span>
+          <span class="tag-3d">ML Engineer</span>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="ai-brain-container">
+          <div class="ai-brain">
+            <div class="brain-core">
+              <div class="core-text">AI</div>
+              <div class="pulse-ring"></div>
+              <div class="pulse-ring delay-1"></div>
+              <div class="pulse-ring delay-2"></div>
+            </div>
+            <div class="neural-network">
+              <div class="neuron n1"><span>ML</span></div>
+              <div class="neuron n2"><span>DS</span></div>
+              <div class="neuron n3"><span>DL</span></div>
+              <div class="neuron n4"><span>CV</span></div>
+              <div class="neuron n5"><span>IoT</span></div>
+              <div class="neuron n6"><span>NLP</span></div>
+            </div>
+            <div class="neural-connections">
+              <div class="connection c1"></div>
+              <div class="connection c2"></div>
+              <div class="connection c3"></div>
+              <div class="connection c4"></div>
+              <div class="connection c5"></div>
+              <div class="connection c6"></div>
+              <div class="connection c7"></div>
+              <div class="connection c8"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Floating Stats -->
+        <div class="floating-stats">
+          <div class="stat-card" data-aos="fade-left" data-aos-delay="200">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat-card" data-aos="fade-left" data-aos-delay="400">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Internships</div>
+          </div>
+          <div class="stat-card" data-aos="fade-left" data-aos-delay="600">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+        </div>
+        
+        <!-- Tech Stack Icons -->
+        <div class="tech-orbit">
+          <div class="tech-icon python" data-aos="zoom-in" data-aos-delay="800">
+            <i class="fab fa-python"></i>
+          </div>
+          <div class="tech-icon flask" data-aos="zoom-in" data-aos-delay="900">
+            <i class="fas fa-flask"></i>
+          </div>
+          <div class="tech-icon database" data-aos="zoom-in" data-aos-delay="1000">
+            <i class="fas fa-database"></i>
+          </div>
+          <div class="tech-icon ai" data-aos="zoom-in" data-aos-delay="1100">
+            <i class="fas fa-brain"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+      <span>Scroll to explore</span>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section-3d about-3d" data-aos="fade-up">
+    <div class="about-3d-visual">
+      <div class="about-3d-scene">
+        <div class="floating-profile">
+          <div class="profile-body">👨‍💻</div>
+          <div class="achievement-badges">
+            <div class="achievement">🎓</div>
+            <div class="achievement">💻</div>
+            <div class="achievement">🚀</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">About Me</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="about-container">
+      <div class="profile-3d">
+        <div class="profile-card">
+          <div class="profile-image-container">
+            <div class="profile-glow-ring"></div>
+            <img class="profile-img-3d" src="https://avatars.githubusercontent.com/u/248322693?s=400&u=7160f13d0725d771ca44727cc6739a7add01288d&v=4" alt="Sameer Shaik">
+            <div class="profile-particles">
+              <div class="profile-particle"></div>
+              <div class="profile-particle"></div>
+              <div class="profile-particle"></div>
+              <div class="profile-particle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <h3 class="about-name-3d">Sameer Shaik</h3>
+        <p class="about-title-3d">AI & Data Science Developer</p>
+        <div class="about-text-3d">
+          <p class="about-desc-3d">🚀 Passionate about solving real-world problems with AI, IoT, and Deep Learning. Whether it's building facial recognition systems or disease prediction apps, I thrive on innovation.</p>
+          <p class="about-extra-3d">🖋 I'm also a poet, creative writer, and someone who believes in technology with a soul.</p>
+        </div>
+        <div class="badges-3d">
+          <div class="badge-3d">
+            <i class="fas fa-robot badge-icon"></i>
+            <span class="badge-text">AI Developer</span>
+          </div>
+          <div class="badge-3d">
+            <i class="fas fa-brain badge-icon"></i>
+            <span class="badge-text">ML Enthusiast</span>
+          </div>
+          <div class="badge-3d">
+            <i class="fas fa-pen-fancy badge-icon"></i>
+            <span class="badge-text">Creative Writer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section-3d projects-3d" data-aos="fade-right">
+    <div class="projects-3d-visual">
+      <div class="projects-3d-scene">
+        <div class="floating-rocket">
+          <div class="rocket-body">🚀</div>
+          <div class="project-elements">
+            <div class="element">💻</div>
+            <div class="element">🌐</div>
+            <div class="element">⚡</div>
+            <div class="element">🎯</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">🚀 Projects</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card-3d" data-aos="flip-left">
+        <div class="project-3d-animation-area">
+          <div class="portfolio-3d-scene">
+            <div class="floating-laptop">
+              <div class="laptop-screen">
+                <div class="screen-glow"></div>
+                <div class="code-lines">
+                  <div class="code-line"></div>
+                  <div class="code-line"></div>
+                  <div class="code-line"></div>
+                </div>
+                <div class="typing-cursor"></div>
+              </div>
+              <div class="laptop-base"></div>
+            </div>
+            <div class="floating-icons">
+              <div class="tech-orb flask"><span>Flask</span></div>
+              <div class="tech-orb css"><span>CSS3</span></div>
+              <div class="tech-orb js"><span>JS</span></div>
+            </div>
+            <div class="code-particles">
+              <div class="particle">&lt;/&gt;</div>
+              <div class="particle">{}</div>
+              <div class="particle">[]</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Personal Portfolio</h3>
+          <p class="project-desc">Modern 3D portfolio with AI chatbot integration.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">CSS3</span>
+          </div>
+          <div class="project-links">
+            <a href="https://sameer-porfolio.onrender.com/" target="_blank" class="project-link live-demo">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/ShaikSameerShubhan0089/SAMEER_Porfolio.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="100">
+        <div class="project-3d-animation-area">
+          <div class="movie-3d-scene">
+            <div class="floating-cinema">
+              <div class="cinema-screen">
+                <div class="movie-reel"></div>
+                <div class="recommendation-flow">
+                  <div class="data-point"></div>
+                  <div class="data-point"></div>
+                  <div class="data-point"></div>
+                </div>
+                <div class="movie-posters">
+                  <div class="poster">🎬</div>
+                  <div class="poster">🍿</div>
+                  <div class="poster">🎭</div>
+                </div>
+              </div>
+            </div>
+            <div class="ml-algorithm">
+              <div class="algorithm-node python"><span>🐍</span></div>
+              <div class="algorithm-node streamlit"><span>⚡</span></div>
+              <div class="algorithm-node ml"><span>🧠</span></div>
+            </div>
+            <div class="recommendation-arrows">
+              <div class="arrow">→</div>
+              <div class="arrow">↗</div>
+              <div class="arrow">↘</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Movie Recommender System</h3>
+          <p class="project-desc">AI-powered movie recommendations with ML.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">ML</span>
+          </div>
+          <div class="project-links">
+            <a href="https://smr2005-movie-recomendor-system-eqeizu5aesxnqxk9m3tz9u.streamlit.app/" target="_blank" class="project-link live-demo">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/ShaikSameerShubhan0089/Smr2005-Movie-Recomendor-System.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="200">
+        <div class="project-3d-animation-area">
+          <div class="car-3d-scene">
+            <div class="floating-car">
+              <div class="car-body">🚗</div>
+              <div class="sentiment-waves">
+                <div class="wave positive"></div>
+                <div class="wave neutral"></div>
+                <div class="wave negative"></div>
+              </div>
+              <div class="car-exhaust">
+                <div class="smoke-particle"></div>
+                <div class="smoke-particle"></div>
+                <div class="smoke-particle"></div>
+              </div>
+            </div>
+            <div class="nlp-processing">
+              <div class="text-particle">😊</div>
+              <div class="text-particle">😐</div>
+              <div class="text-particle">😞</div>
+            </div>
+            <div class="sentiment-indicators">
+              <div class="indicator positive">+</div>
+              <div class="indicator neutral">~</div>
+              <div class="indicator negative">-</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Car Pulse</h3>
+          <p class="project-desc">NLP sentiment analysis for car brands.</p>
+          <div class="project-tech">
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">ML</span>
+          </div>
+          <div class="project-links">
+            <a href="https://carpulse.onrender.com/" target="_blank" class="project-link live-demo">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+             <a href="https://github.com/ShaikSameerShubhan0089/AutoFeel_Car_Sentiment_Analyzer_Flask.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="300">
+        <div class="project-3d-animation-area">
+          <div class="medical-3d-scene">
+            <div class="floating-heart">
+              <div class="heart-body">❤️</div>
+              <div class="heartbeat-line">
+                <div class="beat-pulse"></div>
+                <div class="beat-pulse"></div>
+                <div class="beat-pulse"></div>
+              </div>
+              <div class="medical-data">
+                <div class="data-pulse">📊</div>
+                <div class="data-pulse">🩺</div>
+                <div class="data-pulse">💊</div>
+              </div>
+            </div>
+            <div class="diagnosis-flow">
+              <div class="symptom">🤒</div>
+              <div class="analysis">🔍</div>
+              <div class="result">✅</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Disease Prediction</h3>
+          <p class="project-desc">AI-powered medical diagnosis system.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">AI</span>
+          </div>
+          <div class="project-links">
+            <a href="https://sameermedico.streamlit.app/" target="_blank" class="project-link live-demo">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/ShaikSameerShubhan0089/Multiple_Disease_Prediction.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="400">
+        <div class="project-3d-animation-area">
+          <div class="face-3d-scene">
+            <div class="floating-eye">
+              <div class="eye-body">👁️</div>
+              <div class="recognition-grid">
+                <div class="grid-point"></div>
+                <div class="grid-point"></div>
+                <div class="grid-point"></div>
+                <div class="grid-point"></div>
+              </div>
+              <div class="scan-line"></div>
+            </div>
+            <div class="detection-markers">
+              <div class="marker top-left">┌</div>
+              <div class="marker top-right">┐</div>
+              <div class="marker bottom-left">└</div>
+              <div class="marker bottom-right">┘</div>
+            </div>
+            <div class="confidence-meter">
+              <div class="confidence-bar"></div>
+              <span class="confidence-text">98%</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <h3 class="project-title">Face Recognition System</h3>
+          <p class="project-desc">Deep learning face recognition with OpenCV.</p>
+          <div class="project-tech">
+            <span class="tech-tag">OpenCV</span>
+            <span class="tech-tag">Deep Learning</span>
+            <span class="tech-tag">Python</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/ShaikSameerShubhan0089/AI-Powered-Face-Recognitionapp.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="500">
+        <div class="project-3d-animation-area">
+          <div class="iot-3d-scene">
+            <div class="floating-sensor">
+              <div class="sensor-body">🔧</div>
+              <div class="gas-particles">
+                <div class="gas-cloud">💨</div>
+                <div class="alert-signal">🚨</div>
+                <div class="wifi-signal">📶</div>
+              </div>
+              <div class="sensor-readings">
+                <div class="reading">CO: 0.2ppm</div>
+                <div class="reading">CH4: 0.1%</div>
+              </div>
+            </div>
+            <div class="iot-network">
+              <div class="network-node">📱</div>
+              <div class="network-node">💻</div>
+              <div class="network-node">☁️</div>
+            </div>
+            <div class="data-transmission">
+              <div class="data-packet">📊</div>
+              <div class="data-packet">📈</div>
+              <div class="data-packet">⚡</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">IoT Gas Leak Detection</h3>
+          <p class="project-desc">Smart IoT gas monitoring system.</p>
+          <div class="project-tech">
+            <span class="tech-tag">IoT</span>
+            <span class="tech-tag">Arduino</span>
+            <span class="tech-tag">Sensors</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card-3d" data-aos="flip-left" data-aos-delay="600">
+        <div class="project-3d-animation-area">
+          <div class="portfolio-3d-scene">
+            <div class="floating-laptop">
+              <div class="laptop-screen">
+                <div class="screen-glow"></div>
+                <div class="code-lines">
+                  <div class="code-line"></div>
+                  <div class="code-line"></div>
+                  <div class="code-line"></div>
+                </div>
+                <div class="typing-cursor"></div>
+              </div>
+              <div class="laptop-base"></div>
+            </div>
+            <div class="floating-icons">
+              <div class="tech-orb flask"><span>Flask</span></div>
+              <div class="tech-orb css"><span>CSS3</span></div>
+              <div class="tech-orb js"><span>JS</span></div>
+            </div>
+            <div class="code-particles">
+              <div class="particle">&lt;/&gt;</div>
+              <div class="particle">{}</div>
+              <div class="particle">[]</div>
+            </div>
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Portfolio Generator Application</h3>
+          <p class="project-desc">Generate customizable, responsive portfolios from form inputs.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Jinja2</span>
+          </div>
+          <div class="project-links">
+            <a href="https://portfolio-gen2.onrender.com/" target="_blank" class="project-link live-demo">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/ShaikSameerShubhan0089/portfolio-Gen2.git" class="project-link source-code">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills/Technologies -->
+  <section id="technologies" class="section-3d skills-3d" data-aos="fade-up">
+    <div class="skills-3d-visual">
+      <div class="skills-3d-scene">
+        <div class="floating-tech">
+          <div class="tech-body">💻</div>
+          <div class="tech-stack">
+            <div class="stack">🐍</div>
+            <div class="stack">⚛️</div>
+            <div class="stack">🔥</div>
+            <div class="stack">⚡</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">💻 Technologies</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card-3d" data-aos="zoom-in">
+        <div class="skill-3d-animation-area">
+          <div class="python-3d-scene">
+            <div class="floating-snake">
+              <div class="snake-body">🐍</div>
+              <div class="code-particles">
+                <div class="particle">def</div>
+                <div class="particle">class</div>
+                <div class="particle">import</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="skill-content">
+          <i class="fab fa-python skill-icon" style="color: #3776ab;"></i>
+          <h3 class="skill-name">Python</h3>
+          <div class="skill-level-bar">
+            <div class="skill-progress" data-percentage="95"></div>
+          </div>
+          <span class="skill-percentage">95%</span>
+        </div>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="100">
+        <div class="skill-3d-visual">
+          <div class="flask-3d-scene">
+            <div class="floating-flask">
+              <div class="flask-body">🧪</div>
+              <div class="api-routes">
+                <div class="route">@app.route</div>
+                <div class="route">GET</div>
+                <div class="route">POST</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-flask skill-icon" style="color: #000000;"></i>
+        <h3 class="skill-name">Flask</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="90"></div>
+        </div>
+        <span class="skill-percentage">90%</span>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="200">
+        <div class="skill-3d-visual">
+          <div class="ml-3d-scene">
+            <div class="floating-brain">
+              <div class="brain-body">🧠</div>
+              <div class="neural-connections">
+                <div class="connection-line"></div>
+                <div class="connection-line"></div>
+                <div class="connection-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-brain skill-icon" style="color: #ff6b6b;"></i>
+        <h3 class="skill-name">Machine Learning</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="85"></div>
+        </div>
+        <span class="skill-percentage">85%</span>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="300">
+        <div class="skill-3d-visual">
+          <div class="mysql-3d-scene">
+            <div class="floating-database">
+              <div class="db-body">🗃️</div>
+              <div class="sql-queries">
+                <div class="query">SELECT</div>
+                <div class="query">INSERT</div>
+                <div class="query">UPDATE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fas fa-database skill-icon" style="color: #4479a1;"></i>
+        <h3 class="skill-name">MySQL</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="80"></div>
+        </div>
+        <span class="skill-percentage">80%</span>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="400">
+        <div class="skill-3d-visual">
+          <div class="js-3d-scene">
+            <div class="floating-js">
+              <div class="js-body">⚡</div>
+              <div class="js-functions">
+                <div class="function">function()</div>
+                <div class="function">const</div>
+                <div class="function">async</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fab fa-js-square skill-icon" style="color: #f7df1e;"></i>
+        <h3 class="skill-name">JavaScript</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="75"></div>
+        </div>
+        <span class="skill-percentage">75%</span>
+      </div>
+
+      <div class="skill-card-3d" data-aos="zoom-in" data-aos-delay="500">
+        <div class="skill-3d-visual">
+          <div class="html-3d-scene">
+            <div class="floating-html">
+              <div class="html-body">🌐</div>
+              <div class="html-tags">
+                <div class="tag">&lt;div&gt;</div>
+                <div class="tag">&lt;h1&gt;</div>
+                <div class="tag">&lt;p&gt;</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <i class="fab fa-html5 skill-icon" style="color: #e34f26;"></i>
+        <h3 class="skill-name">HTML5</h3>
+        <div class="skill-level-bar">
+          <div class="skill-progress" data-percentage="90"></div>
+        </div>
+        <span class="skill-percentage">90%</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="section-3d certifications-3d" data-aos="fade-left">
+    <div class="certifications-3d-visual">
+      <div class="certifications-3d-scene">
+        <div class="floating-certificate">
+          <div class="certificate-body">📜</div>
+          <div class="cert-badges">
+            <div class="badge">🏆</div>
+            <div class="badge">⭐</div>
+            <div class="badge">🎖️</div>
+            <div class="badge">🥇</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">📜 Certifications</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="certifications-grid">
+      <div class="cert-card-3d" data-aos="flip-up">
+        <div class="cert-3d-visual">
+          <div class="cloud-3d-scene">
+            <div class="floating-cloud">
+              <div class="cloud-body">☁️</div>
+              <div class="server-nodes">
+                <div class="node">💻</div>
+                <div class="node">🖥️</div>
+                <div class="node">📱</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cert-icon">
+          <i class="fas fa-cloud"></i>
+        </div>
+        <h3 class="cert-title">Cloud Computing & Linux Commands</h3>
+        <p class="cert-issuer">Aditya College of Engineering</p>
+        <a href="/static/certificates/cloud.pdf" target="_blank" class="cert-link">
+          <i class="fas fa-external-link-alt"></i> View Certificate
+        </a>
+      </div>
+
+      <div class="cert-card-3d" data-aos="flip-up" data-aos-delay="100">
+        <div class="cert-3d-visual">
+          <div class="data-3d-scene">
+            <div class="floating-database">
+              <div class="db-body">🗄️</div>
+              <div class="data-flow">
+                <div class="data-bit">1</div>
+                <div class="data-bit">0</div>
+                <div class="data-bit">1</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cert-icon">
+          <i class="fas fa-database"></i>
+        </div>
+        <h3 class="cert-title">Getting Started with Data</h3>
+        <p class="cert-issuer">IBM SkillsBuild</p>
+        <a href="/static/certificates/Getting Started with Data.pdf" target="_blank" class="cert-link">
+          <i class="fas fa-external-link-alt"></i> View Certificate
+        </a>
+      </div>
+
+      <div class="cert-card-3d" data-aos="flip-up" data-aos-delay="200">
+        <div class="cert-3d-visual">
+          <div class="ambassador-3d-scene">
+            <div class="floating-graduate">
+              <div class="graduate-body">🎓</div>
+              <div class="leadership-badges">
+                <div class="badge">👑</div>
+                <div class="badge">🏆</div>
+                <div class="badge">⭐</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cert-icon">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <h3 class="cert-title">Campus Ambassador</h3>
+        <p class="cert-issuer">Lets Upgrade</p>
+        <a href="/static/certificates/Campus Ambassador.pdf" target="_blank" class="cert-link">
+          <i class="fas fa-external-link-alt"></i> View Certificate
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internships -->
+  <section id="internships" class="section-3d internships-3d" data-aos="fade-right">
+    <div class="internships-3d-visual">
+      <div class="internships-3d-scene">
+        <div class="floating-experience">
+          <div class="experience-body">🧪</div>
+          <div class="experience-icons">
+            <div class="icon">🤖</div>
+            <div class="icon">💼</div>
+            <div class="icon">🎯</div>
+            <div class="icon">📈</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">🧪 Internships & Experience</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="internships-timeline">
+      <div class="timeline-item" data-aos="fade-right">
+        <div class="internship-3d-visual">
+          <div class="ai-intern-3d-scene">
+            <div class="floating-robot">
+              <div class="robot-body">🤖</div>
+              <div class="ai-processes">
+                <div class="process">ML</div>
+                <div class="process">AI</div>
+                <div class="process">DL</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-icon">
+          <i class="fas fa-robot"></i>
+        </div>
+        <div class="timeline-content">
+          <h3 class="internship-title">AI Intern</h3>
+          <p class="internship-company">Edunet Foundation</p>
+          <p class="internship-duration">TechSaksham Joint CSR Initiative by Microsoft & SAP</p>
+          <p class="internship-desc">Worked on artificial intelligence projects and machine learning model development.</p>
+          <a href="/static/certificates/AI Intern.pdf" target="_blank" class="internship-cert">
+            <i class="fas fa-certificate"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-left">
+        <div class="internship-3d-visual">
+          <div class="ds-intern-3d-scene">
+            <div class="floating-chart">
+              <div class="chart-body">📊</div>
+              <div class="data-viz">
+                <div class="viz">📈</div>
+                <div class="viz">📉</div>
+                <div class="viz">🔍</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-icon">
+          <i class="fas fa-chart-line"></i>
+        </div>
+        <div class="timeline-content">
+          <h3 class="internship-title">Data Science Intern</h3>
+          <p class="internship-company">SkillDzire Technologies Pvt. Ltd</p>
+          <p class="internship-duration">2024</p>
+          <p class="internship-desc">Developed data analysis solutions, predictive models, and data visualization dashboards.</p>
+          <a href="/static/certificates/Data Science Intern.pdf" target="_blank" class="internship-cert">
+            <i class="fas fa-certificate"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-right">
+        <div class="internship-3d-visual">
+          <div class="ai-skillbit-3d-scene">
+            <div class="floating-neural">
+              <div class="neural-body">🧠</div>
+              <div class="neural-network">
+                <div class="neuron">⚡</div>
+                <div class="neuron">🔗</div>
+                <div class="neuron">💡</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-icon">
+          <i class="fas fa-brain"></i>
+        </div>
+        <div class="timeline-content">
+          <h3 class="internship-title">Artificial Intelligence Intern</h3>
+          <p class="internship-company">Skillbit Technologies</p>
+          <p class="internship-duration">Virtual Internship - 2024</p>
+          <p class="internship-desc">Built AI applications and worked on machine learning algorithms and neural networks.</p>
+          <a href="/static/certificates/Shaik Sameer.pdf" target="_blank" class="internship-cert">
+            <i class="fas fa-certificate"></i> View Certificate
+          </a>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-left">
+        <div class="internship-3d-visual">
+          <div class="analytics-3d-scene">
+            <div class="floating-analytics">
+              <div class="analytics-body">📈</div>
+              <div class="analytics-tools">
+                <div class="tool">📊</div>
+                <div class="tool">🔍</div>
+                <div class="tool">💹</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-icon">
+          <i class="fas fa-analytics"></i>
+        </div>
+        <div class="timeline-content">
+          <h3 class="internship-title">Data Analytics Intern</h3>
+          <p class="internship-company">APSCHE x SmartBridge</p>
+          <p class="internship-duration">Virtual Internship - Ongoing</p>
+          <p class="internship-desc">Working on data analytics projects, statistical analysis, and business intelligence solutions.</p>
+          <a href="static/certificates/SmartBridge certificate.pdf" target="_blank" class="internship-cert ongoing">
+            <i class="fasfa-certificate"></i>  View Certificate
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chat -->
+  <!-- Enhanced Chat Section -->
+  <section id="chat" class="section-3d enhanced-chat-3d" data-aos="zoom-in">
+    <div class="chat-3d-visual">
+      <div class="chat-3d-scene">
+        <div class="floating-chat">
+          <div class="chat-body">💬</div>
+          <div class="chat-elements">
+            <div class="element">AI</div>
+            <div class="element">🤖</div>
+            <div class="element">💭</div>
+            <div class="element">✨</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-header">
+      <h2 class="chat-main-title">Chat with Laddu - Sameer's AI</h2>
+      <div class="title-underline"></div>
+    </div>
+    
+    <div class="enhanced-chat-container">
+      <!-- Left Side - AI Assistant Info -->
+      <div class="chat-left" data-aos="fade-right">
+        <div class="ai-assistant-info">
+          <div class="ai-avatar-container">
+            <div class="ai-avatar">
+              <img src="/static/images/chatbot-icon.png" alt="Laddu AI" class="ai-avatar-img">
+              <div class="ai-status-indicator">
+                <span class="status-dot"></span>
+              </div>
+            </div>
+          </div>
+          
+          <h3 class="ai-name">Hi I'm Laddu,<br>Sameer's AI<br>Assistant</h3>
+          <p class="ai-description">Ask me anything about Sameer's skills, projects, experience, or education. I'm here to help you learn more about him!</p>
+        </div>
+      </div>
+
+      <!-- Right Side - Chat Interface -->
+      <div class="chat-right" data-aos="fade-left">
+        <div class="chat-interface">
+          <!-- Chat Messages Area -->
+          <div id="chatbox" class="enhanced-chatbox">
+            <div class="ai-message">
+              <div class="message-avatar">
+                <img src="/static/images/chatbot-icon.png" alt="Laddu" class="message-avatar-img">
+              </div>
+              <div class="message-content">
+                <div class="message-bubble ai-bubble">
+                  <span class="wave-emoji">👋</span> Hello! I'm Laddu, Sameer's AI assistant. Ask me anything about his skills, projects, or experience!
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Chat Input Area -->
+          <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+              <textarea id="userInput" class="chat-input" placeholder="Ask something about Sameer..." rows="1"></textarea>
+              
+              <div class="chat-controls">
+                <button id="voice-input-btn" class="chat-btn voice-btn" title="Voice Input">
+                  <i class="fas fa-microphone"></i>
+                  <div class="btn-label">VOICE</div>
+                </button>
+                
+                <button id="voice-toggle-btn" class="chat-btn audio-btn" title="Audio Response">
+                  <i class="fas fa-volume-up"></i>
+                  <div class="btn-label">AUDIO</div>
+                </button>
+                
+                <button onclick="sendMessage()" class="chat-btn send-btn" title="Send Message">
+                  <i class="fas fa-paper-plane"></i>
+                  <div class="btn-label">SEND</div>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section-3d contact-3d" data-aos="fade-up">
+    <div class="contact-3d-visual">
+      <div class="contact-3d-scene">
+        <div class="floating-contact">
+          <div class="contact-body">📞</div>
+          <div class="contact-methods">
+            <div class="method">📧</div>
+            <div class="method">📱</div>
+            <div class="method">💬</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">📞 Contact Me</h2>
+      <div class="title-underline"></div>
+      <p class="section-subtitle">Let's connect — click below to reach out directly!</p>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:shaiksameershubhan71@gmail.com" class="contact-card-3d" data-aos="zoom-in">
+        <i class="fas fa-envelope contact-icon"></i>
+        <h3 class="contact-title">Email</h3>
+        <p class="contact-info">shaiksameershubhan71@gmail.com</p>
+      </a>
+
+      <a href="tel:+919652879470" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="50">
+        <i class="fas fa-phone-alt contact-icon"></i>
+        <h3 class="contact-title">Phone</h3>
+        <p class="contact-info">+91 9652879470</p>
+      </a>
+
+      <a href="https://wa.me/919652879470" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="100">
+        <i class="fab fa-whatsapp contact-icon"></i>
+        <h3 class="contact-title">WhatsApp</h3>
+        <p class="contact-info">Message Me Directly</p>
+      </a>
+
+      <a href="https://www.linkedin.com/in/shaik-sameer-69a3422a8" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="150">
+        <i class="fab fa-linkedin contact-icon"></i>
+        <h3 class="contact-title">LinkedIn</h3>
+        <p class="contact-info">Connect with me</p>
+      </a>
+
+      <a href="https://github.com/ShaikSameerShubhan0089" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="200">
+        <i class="fab fa-github contact-icon"></i>
+        <h3 class="contact-title">GitHub</h3>
+        <p class="contact-info">View my code</p>
+      </a>
+
+      <a href="https://www.instagram.com/_shaik___sameer_shubhan" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="250">
+        <i class="fab fa-instagram contact-icon"></i>
+        <h3 class="contact-title">Instagram</h3>
+        <p class="contact-info">@_shaik___sameer_shubhan</p>
+      </a>
+
+      <a href="https://www.instagram.com/s.m.r_writings" target="_blank" class="contact-card-3d" data-aos="zoom-in" data-aos-delay="300">
+        <i class="fab fa-instagram contact-icon"></i>
+        <h3 class="contact-title">Poetry & Writings</h3>
+        <p class="contact-info">@s.m.r_writings</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Enhanced Contact & Resume Section -->
+  <section id="resume" class="section-3d contact-resume-3d" data-aos="fade-up">
+    <div class="resume-3d-visual">
+      <div class="resume-3d-scene">
+        <div class="floating-resume">
+          <div class="resume-body">📄</div>
+          <div class="resume-elements">
+            <div class="element">CV</div>
+            <div class="element">📊</div>
+            <div class="element">🎓</div>
+            <div class="element">💼</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-header">
+      <h2 class="section-title-3d">📄 Access My Resume</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="contact-resume-container">
+      <!-- Left Side - Profile & Connect -->
+      <div class="contact-left" data-aos="fade-right">
+        <div class="profile-section">
+          <div class="profile-image-container">
+            <img src="static\images\WhatsApp Image 2025-07-29 at 10.07.55 PM.jpeg" alt="Sameer" class="profile-image">
+            <div class="online-status">
+              <span class="online-dot"></span>
+              <span class="status-text">Available for opportunities</span>
+            </div>
+          </div>
+          
+          <div class="profile-poem">
+            <p class="poem-text">
+              "You loop through my thoughts like a while that won't end,<br>
+              Your logic's so clean, even bugs want to pretend.<br>
+              You're the class I inherit, the method I call,<br>
+              In this code of emotions, you're my catch after all."
+            </p>
+            <p class="poem-author">- SMR</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side - Resume Form -->
+      <div class="contact-right" data-aos="fade-left">
+        <div class="resume-form-container">
+          <h2 class="form-title">Get Resume Instantly</h2>
+          <p class="form-subtitle">Get my latest resume delivered to your inbox instantly</p>
+          
+          <form action="/Access_Resume" method="POST" class="resume-form" id="resumeForm">
+            <div class="form-group">
+              <label for="fullName" class="form-label">
+                <i class="fas fa-user"></i> Full Name
+              </label>
+              <input type="text" id="fullName" name="name" class="form-input" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="emailAddress" class="form-label">
+                <i class="fas fa-envelope"></i> Email Address
+              </label>
+              <input type="email" id="emailAddress" name="email" class="form-input" placeholder="your.email@example.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message" class="form-label">
+                <i class="fas fa-comment"></i> Message (Optional)
+              </label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="Tell me about the opportunity or just say hello!" rows="4"></textarea>
+            </div>
+            
+            <button type="submit" class="resume-btn">
+              <i class="fas fa-download"></i>
+              GET RESUME
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="chat-float-btn" class="chat-float-btn">
+    <div class="chat-tooltip">Hi! I'm Sameer's Assistant<br>Ask me anything!</div>
+  </div>
+
+  <!-- Particle Explosion Container -->
+  <div id="particle-explosion"></div>
+
+  <script>
+    // Enhanced chat float button and mobile navigation functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const chatButton = document.getElementById('chat-float-btn');
+      const chatSection = document.getElementById('chat');
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu-3d');
+      const body = document.body;
+      
+      // Handle mobile menu toggle
+      if (navToggle && navMenu) {
+        let isTransitioning = false;
+        
+        navToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          if (isTransitioning) return;
+          isTransitioning = true;
+          
+          const isOpen = this.classList.contains('active');
+          
+          // Toggle classes
+          this.classList.toggle('active');
+          navMenu.classList.toggle('active');
+          body.classList.toggle('nav-open');
+          
+          // Handle menu animation complete
+          navMenu.addEventListener('transitionend', function handler() {
+            isTransitioning = false;
+            navMenu.removeEventListener('transitionend', handler);
+          });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (navMenu.classList.contains('active') && 
+              !navToggle.contains(e.target) && 
+              !navMenu.contains(e.target)) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+        });
+        
+        // Close menu when resizing to desktop
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+        });
+      }
+      
+      // Handle chat button click
+      if (chatButton && chatSection) {
+        chatButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Close mobile menu if open
+          if (navToggle && navMenu) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+
+          // Calculate offset position
+          const headerOffset = 80;
+          const elementPosition = chatSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          // Smooth scroll to chat section
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+
+          // Focus on chat input after scrolling
+          setTimeout(() => {
+            const chatInput = document.getElementById('userInput');
+            if (chatInput) {
+              chatInput.focus();
+            }
+          }, 1000);
+        });
+      }
+      
+      // Fix iOS viewport height
+      function setVHProperty() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      
+      // Set initial viewport height
+      setVHProperty();
+      
+      // Update viewport height on resize and orientation change
+      window.addEventListener('resize', setVHProperty);
+      window.addEventListener('orientationchange', () => {
+        setTimeout(setVHProperty, 100);
+      });
+    });
+  </script>
+  
+  <!-- Cursor Particle Trail -->
+  <div id="cursor-particles"></div>
+
+  <!-- Scripts with Performance & Compatibility Optimization -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js" defer></script>
+  <script src="{{ url_for('static', filename='js/3d-animations.js') }}" defer></script>
+  
+  <script>
+    // === COMPREHENSIVE DEVICE & BROWSER OPTIMIZATION === //
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Performance optimization based on device capabilities
+      const isLowEndDevice = navigator.hardwareConcurrency <= 2 || 
+                            navigator.deviceMemory <= 2 ||
+                            /Android.*Chrome\/[.0-9]*\s/.test(navigator.userAgent);
+      
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const isAndroid = /Android/i.test(navigator.userAgent);
+      
+      // Initialize mobile navigation
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu-3d');
+      const body = document.body;
+      
+      // Function to handle smooth scrolling
+      function smoothScrollToSection(targetId) {
+        const targetSection = document.querySelector(targetId);
+        if (targetSection) {
+          // Close mobile menu first
+          if (navToggle && navMenu) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+
+          // Wait for menu to close, then scroll
+          setTimeout(() => {
+            const headerOffset = 80;
+            const elementPosition = targetSection.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }, 300);
+        }
+      }
+
+      // Handle mobile menu toggle
+      if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          navToggle.classList.toggle('active');
+          navMenu.classList.toggle('active');
+          body.classList.toggle('nav-open');
+        });
+
+        // Handle navigation links
+        document.querySelectorAll('.nav-link-3d').forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            smoothScrollToSection(targetId);
+          });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+        });
+        
+        // Device detection
+        const isLowEndDevice = navigator.hardwareConcurrency <= 2 || 
+                             navigator.deviceMemory <= 2 ||
+                             /Android.*Chrome\/[.0-9]*\s/.test(navigator.userAgent);
+        
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        
+        // Optimize for low-end devices
+        if (isLowEndDevice) {
+          document.documentElement.style.setProperty('--animation-duration', '0.5s');
+          const particles = document.querySelector('.particles-container');
+          const shapes = document.querySelector('.geometric-shapes');
+          if (particles) particles.style.display = 'none';
+          if (shapes) shapes.style.display = 'none';
+        }
+        
+        // iOS specific optimizations
+        if (isIOS) {
+          document.body.style.webkitTouchCallout = 'none';
+          document.body.style.webkitUserSelect = 'none';
+          
+          // Fix iOS viewport issues
+          const viewport = document.querySelector('meta[name=viewport]');
+          if (viewport) {
+            viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+          }
+        }
+      
+      // Android specific optimizations
+      if (isAndroid) {
+        document.body.style.overscrollBehavior = 'none';
+      }
+      
+      // Initialize AOS with device-appropriate settings
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: isLowEndDevice ? 500 : 1000,
+          once: true,
+          offset: isMobile ? 50 : 100,
+          disable: function() {
+            return window.innerWidth < 768 && isLowEndDevice;
+          }
+        });
+      }
+      
+      // Optimize chat input for mobile
+      const chatInput = document.querySelector('.chat-input');
+      if (chatInput && isMobile) {
+        chatInput.style.fontSize = '16px'; // Prevent zoom on iOS
+        chatInput.addEventListener('focus', function() {
+          if (isIOS) {
+            setTimeout(() => {
+              window.scrollTo(0, 0);
+              document.body.scrollTop = 0;
+            }, 300);
+          }
+        });
+      }
+      
+      // Optimize buttons for touch devices
+      const buttons = document.querySelectorAll('.chat-btn, .resume-btn, .project-link');
+      if (isMobile) {
+        buttons.forEach(btn => {
+          btn.style.minHeight = '44px'; // iOS touch target minimum
+          btn.style.minWidth = '44px';
+        });
+      }
+      
+      // Performance monitoring
+      if ('performance' in window) {
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData && perfData.loadEventEnd - perfData.loadEventStart > 3000) {
+              // Slow loading detected, disable heavy animations
+              document.documentElement.style.setProperty('--animation-duration', '0.2s');
+            }
+          }, 1000);
+        });
+      }
+    }
+    
+    // Network-aware optimizations
+    if ('connection' in navigator) {
+      const connection = navigator.connection;
+      if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+        document.documentElement.style.setProperty('--animation-duration', '0.1s');
+        const heavyElements = document.querySelectorAll('.particles-container, .geometric-shapes, .bg-elements');
+        /* keep visuals */
+      }
+    }
+    
+    // Mobile Navigation Toggle Functionality
+    function initializeMobileNavigation() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.nav-menu-3d');
+      const navLinks = document.querySelectorAll('.nav-link-3d');
+      const body = document.body;
+      
+      // Debug logging for mobile
+      console.log('Mobile Navigation Debug:', {
+        navToggle: !!navToggle,
+        navMenu: !!navMenu,
+        navLinksCount: navLinks.length,
+        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent),
+        viewportWidth: window.innerWidth,
+        viewportHeight: window.innerHeight
+      });
+      
+      if (navToggle && navMenu) {
+        // Toggle mobile menu
+        navToggle.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          console.log('Nav toggle clicked!');
+          
+          navToggle.classList.toggle('active');
+          navMenu.classList.toggle('active');
+          body.classList.toggle('nav-open');
+          
+          console.log('Nav states:', {
+            toggleActive: navToggle.classList.contains('active'),
+            menuActive: navMenu.classList.contains('active'),
+            bodyNavOpen: body.classList.contains('nav-open')
+          });
+        });
+        
+        // Close menu when clicking on nav links
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            navToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('nav-open');
+          }
+        });
+      }
+    }
+    
+    // Smooth scrolling for navigation links
+    function initializeSmoothScrolling() {
+      const navLinks = document.querySelectorAll('.nav-link-3d');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          const targetSection = document.querySelector(targetId);
+          
+          if (targetSection) {
+            // Close mobile menu if open
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu-3d');
+            const body = document.body;
+            
+            if (navToggle && navMenu) {
+              navToggle.classList.remove('active');
+              navMenu.classList.remove('active');
+              body.classList.remove('nav-open');
+            }
+            
+            // Smooth scroll to target
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+    }
+    
+    // Fix mobile viewport height
+    function setMobileViewportHeight() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    // Initialize performance optimizations
+    function initializeOptimizations() {
+      // Device and browser detection
+      const isLowEndDevice = navigator.hardwareConcurrency <= 2 || 
+                           navigator.deviceMemory <= 2 ||
+                           /Android.*Chrome\/[.0-9]*\s/.test(navigator.userAgent);
+      
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      // Optimize animations and effects
+      if (isLowEndDevice || isMobile) {
+        document.documentElement.style.setProperty('--animation-duration', '0.3s');
+        const heavyElements = document.querySelectorAll('.particles-container, .geometric-shapes');
+        heavyElements.forEach(el => {
+          if (el) el.style.display = 'none';
+        });
+      }
+      
+      // Handle mobile viewport
+      function updateViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      
+      updateViewportHeight();
+      window.addEventListener('resize', updateViewportHeight);
+      window.addEventListener('orientationchange', () => {
+        setTimeout(updateViewportHeight, 100);
+      });
+    }
+
+    // Initialize everything when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        initializeOptimizations();
+        initNavigation();
+      });
+    } else {
+      initializeOptimizations();
+      initNavigation();
+    }
+    
+    // Handle orientation changes and viewport fixes
+    window.addEventListener('orientationchange', function() {
+      setTimeout(function() {
+        setMobileViewportHeight();
+        window.scrollTo(0, 1);
+      }, 500);
+    });
+    
+    // Handle window resize for mobile viewport
+    window.addEventListener('resize', function() {
+      setMobileViewportHeight();
+    });
+    
+    // Fix iOS scroll issues
+    document.addEventListener('touchmove', function(e) {
+      if (document.body.classList.contains('nav-open')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+    
+    // Prevent zoom on double tap for iOS
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+      const now = (new Date()).getTime();
+      if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+    
+    // Service Worker registration removed to prevent 404 errors
+    
+    // Hide loading screen
+    function hideLoadingScreen() {
+      const loadingOverlay = document.querySelector('.loading-overlay');
+      if (loadingOverlay) {
+        loadingOverlay.classList.add('hidden');
+        setTimeout(function() {
+          loadingOverlay.style.display = 'none';
+        }, 500);
+      }
+    }
+
+    // Hide loading screen after DOM content is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(hideLoadingScreen, 1000);
+    });
+
+    // Fallback to hide loading screen after window load
+    window.addEventListener('load', function() {
+      hideLoadingScreen();
+    });
+
+    // Force hide loading screen after 5 seconds (failsafe)
+    setTimeout(hideLoadingScreen, 5000);
+  }); // Close DOMContentLoaded
+  </script>
+<script>
+const toggle = document.querySelector('.nav-toggle');
+const panel = document.querySelector('.nav-panel');
+const progressBar = document.querySelector('.scroll-bar');
+const links = document.querySelectorAll('.nav-link');
+
+toggle.addEventListener('click', () => {
+  const open = toggle.classList.toggle('open');
+  panel.classList.toggle('open', open);
+  toggle.setAttribute('aria-expanded', open);
+  document.body.classList.toggle('no-scroll', open);
+});
+
+links.forEach(link => link.addEventListener('click', () => {
+  toggle.classList.remove('open');
+  panel.classList.remove('open');
+  document.body.classList.remove('no-scroll');
+}));
+
+document.documentElement.style.scrollBehavior = 'smooth';
+const sections = [...links].map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+
+function highlightActive() {
+  const scrollPos = window.scrollY + 200;
+  sections.forEach((section, i) => {
+    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+      links.forEach(l => l.classList.remove('active'));
+      links[i].classList.add('active');
+    }
+  });
+}
+window.addEventListener('scroll', highlightActive);
+
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (scrollTop / height) * 100;
+  progressBar.style.width = scrolled + "%";
+});
+</script>
+<script>
+// Floating logo effect based on scroll
+const logo = document.querySelector('.logo-img');
+let ticking = false;
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const scrollY = window.scrollY;
+      if (scrollY > 40) {
+        logo.classList.add('float-active');
+      } else {
+        logo.classList.remove('float-active');
+      }
+      ticking = false;
+    });
+    ticking = true;
+  }
+});
+</script>
+
+
+</body>
+</html>
+</body>
+</html>

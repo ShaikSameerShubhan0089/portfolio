@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Resume Pages</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #1a1a1a;
+            color: white;
+        }
+        .test-form {
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00ffff;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            background: #1a1a1a;
+            color: white;
+        }
+        button {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: black;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        .info {
+            background: #333;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test Resume Response Pages</h1>
+    
+    <div class="info">
+        <h3>📋 Instructions:</h3>
+        <p>Use the forms below to test the resume response pages. The first form tests the "request submitted" page, and the second tests the "resume sent" page.</p>
+    </div>
+    
+    <div class="test-form">
+        <h3>📝 Test Resume Request Form</h3>
+        <form action="/request_resume" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" value="Test User" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" value="test@example.com" required>
+            </div>
+            <button type="submit">🚀 Submit Resume Request</button>
+        </form>
+    </div>
+    
+    <div class="test-form">
+        <h3>📧 Test Resume Sent Page</h3>
+        <p>Click the link below to test the "resume sent" page:</p>
+        <a href="/approve_resume?email=test@example.com&name=Test%20User" style="text-decoration: none;">
+            <button type="button">✅ Test Resume Sent Page</button>
+        </a>
+    </div>
+    
+    <div class="info">
+        <h3>🔗 Quick Links:</h3>
+        <a href="/" style="color: #00ffff;">← Back to Main Portfolio</a>
+    </div>
+</body>
+</html>
