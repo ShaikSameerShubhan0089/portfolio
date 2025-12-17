@@ -28,7 +28,7 @@ def request_resume():
     if not api_key:
         return "<h3>❌ Brevo API key missing. Check your environment variables.</h3>"
 
-    approve_link = f"https://sameer-porfolio.onrender.com/approve_resume?email={email}&name={name}"
+    approve_link = f"https://sameer-portfolio-ta3w.onrender.com/approve_resume?email={email}&name={name}"
     deny_link = f"mailto:{email}?subject=Regarding%20Resume%20Request"
 
     # Email content
@@ -48,8 +48,8 @@ def request_resume():
     """
 
     data = {
-        "sender": {"email": "shaiksameershubhan@gmail.com", "name": "Sameer Portfolio"},
-        "to": [{"email": "shaiksameershubhan@gmail.com"}],
+        "sender": {"email": "shaiksameershubhan71@gmail.com", "name": "Sameer Portfolio"},
+        "to": [{"email": "shaiksameershubhan71@gmail.com"}],
         "subject": "📥 Resume Access Request via Portfolio",
         "htmlContent": html_content
     }
@@ -103,13 +103,13 @@ def approve_resume():
     Warm regards,  
     Sameer Shaik  
     AI & Data Science Developer  
-    📧 shaiksameershubhan@gmail.com  
-    🔗 LinkedIn: https://www.linkedin.com/in/shaik-sameer-69a342a8  
-    💻 GitHub: https://github.com/Smr2005
+    📧 shaiksameershubhan71@gmail.com  
+    🔗 LinkedIn: https://www.linkedin.com/in/shaik-sameer-shubhan-2598563a0
+    💻 GitHub: https://github.com/ShaikSameerShubhan0089
     """
 
     data = {
-        "sender": {"email": "shaiksameershubhan@gmail.com", "name": "Sameer Shaik"},
+        "sender": {"email": "shaiksameershubhan71@gmail.com", "name": "Sameer Shaik"},
         "to": [{"email": hr_email, "name": name}],
         "subject": "📎 Resume from Sameer Shaik",
         "textContent": cold_email,
@@ -135,6 +135,106 @@ def approve_resume():
             return f"<h3>❌ Failed to send via Brevo API: {response.status_code} - {response.text}</h3>"
     except Exception as e:
         return f"<h3>❌ Network or API Error: {str(e)}</h3>"
+
+
+# === Chat API Route ===
+@app.route('/api/chat', methods=['POST'])
+def chat_api():
+    try:
+        data = request.get_json()
+        if data is None:
+            return {"error": "Invalid JSON or missing Content-Type header"}, 400
+        
+        question = data.get('question', '').strip()
+        
+        if not question:
+            return {"error": "No question provided"}, 400
+    except Exception as e:
+        return {"error": f"Request parsing error: {str(e)}"}, 400
+    
+    groq_api_key = os.getenv("GROQ_API_KEY")
+    if not groq_api_key:
+        return {"error": "Groq API key not configured"}, 500
+    
+    headers = {
+        "Authorization": f"Bearer {groq_api_key}",
+        "Content-Type": "application/json"
+    }
+    
+    sameer_facts = """
+PERSONAL INFORMATION:
+- Name: Shaik Sameer
+- Email: shaiksameershubhan71@gmail.com
+- LinkedIn: https://www.linkedin.com/in/shaik-sameer-shubhan-2598563a0
+- GitHub: https://github.com/ShaikSameerShubhan0089
+- Phone: +91 9652879470
+- Location: India
+
+EDUCATION:
+- B.Tech in AI & Data Science from Aditya College of Engineering (2021–2026)
+- Intermediate in Maths, Physics, Chemistry at Vidyanikethan Junior College (2020–2022)
+
+TECHNICAL SKILLS:
+- Programming Languages: Python, JavaScript, HTML, CSS
+- Frameworks & Libraries: Flask, Streamlit, OpenCV, Pandas, NumPy
+- Databases: MySQL
+- Tools & Technologies: Power BI, Git, GitHub, VS Code
+- AI/ML: Computer Vision, Data Analysis, Machine Learning
+
+PROJECTS:
+1. Facial Recognition System - OpenCV and Python
+2. Disease Prediction App - ML application
+3. Personal Portfolio Website - Full-stack
+4. IoT Gas Leak Detection System - IoT safety
+5. AutoFeel - Car Sentiment Analyzer
+
+INTERNSHIPS & EXPERIENCE:
+- AI Intern at TechSaksham Edunet Foundation
+- Data Science Intern at SkillDzire Technologies
+- Data Analytics Intern at APSCHE x SmartBridge
+Job Roles:
+- IT Exective at Agile CAS
+"""
+    
+    payload = {
+        "model": "llama-3.3-70b-versatile",
+        "messages": [
+            {
+                "role": "system",
+                "content": f"You are Sameer's portfolio chatbot. Answer questions about Sameer based on this information:\n{sameer_facts}"
+            },
+            {
+                "role": "user",
+                "content": question
+            }
+        ],
+        "max_tokens": 1024,
+        "temperature": 0.7
+    }
+    
+    try:
+        response = requests.post(
+            "https://api.groq.com/openai/v1/chat/completions",
+            headers=headers,
+            json=payload,
+            timeout=15
+        )
+        
+        print(f"Groq API Response Status: {response.status_code}")
+        print(f"Groq API Response: {response.text}")
+        
+        if response.status_code == 200:
+            data = response.json()
+            reply = data['choices'][0]['message']['content']
+            return {"reply": reply}
+        else:
+            error_detail = response.text
+            print(f"Groq API Error: {error_detail}")
+            return {"error": f"Groq API error: {response.status_code} - {error_detail}"}, response.status_code
+    
+    except Exception as e:
+        print(f"Chat error: {str(e)}")
+        return {"error": f"Chat error: {str(e)}"}, 500
 
 
 # === Favicon Routes ===
