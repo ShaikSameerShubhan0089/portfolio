@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,4 +31,38 @@
         <p>© 2025 Sameer Shaik. All rights reserved.</p>
     </footer>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sameer Shaik | Portfolio 3D Enhanced</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="{{ url_for('static', filename='js/3d-effects.js') }}" defer></script>
+</head>
+<body>
+    {% include 'base.html' %}
+
+    <section class="hero">
+        <h1>Welcome to My 3D Enhanced Portfolio</h1>
+        <p>Explore my projects and skills through stunning 3D animations and effects!</p>
+    </section>
+
+    <section class="links">
+        <h2>Explore More</h2>
+        <ul>
+            <li><a href="/about">About Me</a></li>
+            <li><a href="/projects">My Projects</a></li>
+            <li><a href="/contact">Contact Me</a></li>
+            <li><a href="/3d-showcase">3D Showcase</a></li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2025 Sameer Shaik. All rights reserved.</p>
+    </footer>
+</body>
+>>>>>>> 876a04cc55f654954d2b5653d97af0de107da3fa
 </html>
