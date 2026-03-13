@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects | Sameer Shaik</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    {% block content %}
+    <div class="container">
+        <h2>🚀 Projects</h2>
+        <ul>
+            <li>
+                <h3>Face Recognition Attendance System</h3>
+                <p>A project that utilizes facial recognition technology to automate attendance tracking.</p>
+            </li>
+            <li>
+                <h3>Multiple Disease Prediction using Streamlit</h3>
+                <p>An interactive web application that predicts various diseases based on user input.</p>
+            </li>
+            <li>
+                <h3>IoT Gas Sensor Monitoring</h3>
+                <p>A system that monitors gas levels using IoT devices and provides real-time alerts.</p>
+            </li>
+            <li>
+                <h3>3D Visualization of Projects</h3>
+                <p>Explore the 3D models of my projects in an interactive showcase. <a href="/3d-showcase">See 3D Showcase</a></p>
+            </li>
+        </ul>
+    </div>
+    {% endblock %}
+    <script src="{{ url_for('static', filename='js/3d-effects.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Test</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#0b0b0b; color:#e6f7f7; padding: 1rem; }
+    h1 { color:#0ef; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:1rem; }
+    .card { background:rgba(255,255,255,0.05); border:1px solid rgba(0,255,255,0.2); border-radius:10px; padding:1rem; }
+    code { color:#0ef; }
+  </style>
+</head>
+<body>
+  <h1>📱 Mobile Test</h1>
+  <div class="grid">
+    <div class="card">
+      <h3>Device</h3>
+      <div id="device"></div>
+    </div>
+    <div class="card">
+      <h3>Viewport</h3>
+      <div id="viewport"></div>
+    </div>
+    <div class="card">
+      <h3>Performance</h3>
+      <div id="perf"></div>
+    </div>
+    <div class="card">
+      <h3>Features</h3>
+      <div id="features"></div>
+    </div>
+  </div>
+  <script>
+    function set(id, html){ document.getElementById(id).innerHTML = html; }
+
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const dpr = window.devicePixelRatio || 1;
+    const cores = navigator.hardwareConcurrency || 'N/A';
+
+    set('device', `
+      <p>User Agent: <code>${navigator.userAgent}</code></p>
+      <p>Touch: <code>${isTouch}</code></p>
+      <p>Device Pixel Ratio: <code>${dpr}</code></p>
+      <p>CPU Cores: <code>${cores}</code></p>
+    `);
+
+    function updateViewport(){
+      set('viewport', `
+        <p>Inner: <code>${window.innerWidth} x ${window.innerHeight}</code></p>
+        <p>Outer: <code>${window.outerWidth} x ${window.outerHeight}</code></p>
+        <p>Orientation: <code>${screen.orientation?.type || 'N/A'}</code></p>
+      `);
+    }
+    updateViewport();
+    window.addEventListener('resize', updateViewport);
+
+    const t0 = performance.now();
+    let s = 0; for (let i=0;i<1e6;i++) s += Math.sqrt(i);
+    const t1 = performance.now();
+    set('perf', `<p>Loop test time: <code>${(t1-t0).toFixed(1)}ms</code></p>`);
+
+    set('features', `
+      <p>WebGL: <code>${!!window.WebGLRenderingContext}</code></p>
+      <p>SpeechSynthesis: <code>${'speechSynthesis' in window}</code></p>
+      <p>IntersectionObserver: <code>${'IntersectionObserver' in window}</code></p>
+    `);
+  </script>
+</body>
+</html>
